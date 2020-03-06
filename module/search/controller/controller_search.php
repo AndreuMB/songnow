@@ -7,7 +7,7 @@
 		case 'firstdrop':
 			try{
 				$DAOsearch = new DAOSearch();
-				$rdo = $DAOsearch->readProvince();
+				$rdo = $DAOsearch->readGenre();
 			}catch (Exception $e){
 				echo json_encode("error");
 				exit;
@@ -29,7 +29,7 @@
 		case 'seconddrop':
 			try{
 				$DAOsearch = new DAOsearch();
-				$rdo = $DAOsearch->readMuni($_GET['id']);
+				$rdo = $DAOsearch->readSinger($_GET['id']);
 	
 			}catch (Exception $e){
 				echo json_encode("error");
@@ -63,7 +63,7 @@
 					foreach ($rdo as $row) {
 							echo 
 							'<div class="autoelement">
-								<a  class="element" data="'.$row['provincia'].'" id="'.$row['nombre'].'">'.utf8_encode($row['nombre']).'</a>
+								<a  class="element" data="'.$row['song_name'].'" id="'.$row['id_song'].'">'.utf8_encode($row['song_name']).'</a>
 							</div>';
 					}
 					exit;

@@ -13,7 +13,7 @@
 			if($_GET['filter']){
 				try {
 					$daoshop = new DAOsongs();
-					$rlt = $daoshop->select_product_filter($_GET['filter']);
+					$rlt = $daoshop->select_product_filter($_GET['filter'], $_GET['filterb'], $_GET['filter2']);
 				} catch (Exception $e) {
 					echo json_encode("error");
 				}

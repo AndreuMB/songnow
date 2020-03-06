@@ -114,7 +114,6 @@ function categ_shop(id){
 
 function carousel_details(id){
     localStorage.setItem('carousel', id);
-    // window.location.href = 'index.php?page=controller_songs&op=read&modal=' + id;
     window.location.href = 'index.php?page=controller_songs&op=list';
 
 }

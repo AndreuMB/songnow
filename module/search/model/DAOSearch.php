@@ -8,21 +8,15 @@
             return $sentence;
          }
 
-         function readMuni($provi){
-            $sql = "SELECT DISTINCT localidad FROM casas WHERE provincia='$provi' ORDER BY localidad ASC";
-            $conexion = connect::con();
-            $res = mysqli_query($conexion, $sql);
-            connect::close($conexion);
-            return $res;
+         function readSinger($genre){
+            $sentence = connect::sentence("SELECT DISTINCT singer FROM songs WHERE genre LIKE '%$genre%' ORDER BY singer ASC");
+            return $sentence;
          }
 
          function autocomplete(){
             $val = $_POST['auto'];
-            $local = $_POST['drop2'];
-            $sql = "SELECT *  FROM casas WHERE localidad='$local' and nombre LIKE '".$val. "%'";
-            $conexion = connect::con();
-            $res = mysqli_query($conexion, $sql);
-            connect::close($conexion);
-            return $res;
+            $singer = $_POST['drop2'];
+            $sentence = connect::sentence("SELECT *  FROM songs WHERE singer='$singer' and song_name LIKE '%" .$val. "%'");
+            return $sentence;
          }
     }

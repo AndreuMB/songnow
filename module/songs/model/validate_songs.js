@@ -87,6 +87,8 @@ function product_read(id){
 
             )
             localStorage.removeItem('carousel');
+            localStorage.removeItem('id');
+
         })
         
 
@@ -134,6 +136,9 @@ function ajaxForSearch(durl) {
              )                  
 
          localStorage.removeItem('filter');
+         localStorage.removeItem('genre');
+         localStorage.removeItem('singer');
+         
 
      })
     }
@@ -141,75 +146,31 @@ function load(){
 
     var cat = localStorage.getItem('filter');
     var car = localStorage.getItem('carousel');
+    var genre = localStorage.getItem('genre');
+    var singer = localStorage.getItem('singer');
+    var song = localStorage.getItem('song');
+    var id = localStorage.getItem('id');
+    console.log(id);
     console.log(cat);
+    console.log(singer);
     if(cat){
-        ajaxForSearch("module/songs/controller/controller_songs.php?op=data&filter=" + cat)
+        ajaxForSearch("module/songs/controller/controller_songs.php?op=data&filter=" + cat + "&filterb=playlists")
     }else if(car){
-        product_read(car)
+        product_read(car);
+    }else if(id){
+        product_read(id);
+    }else if(singer !=="false" && !id){
+        console.log("enter in singer");
+        ajaxForSearch("module/songs/controller/controller_songs.php?op=data&filter=" + singer + "&filter2=" + genre + "&filterb=singer")
+    }else if(genre && singer=="false"){
+        console.log("genre: " + genre);
+        ajaxForSearch("module/songs/controller/controller_songs.php?op=data&filter=" + genre + "&filterb=genre")
     }else{
         ajaxForSearch("module/songs/controller/controller_songs.php?op=data")
     }
    
 }
-function check(){
-    var checks = "";
-    var count = 0;
-    console.log("checks=");
 
-    $('#check1').click(function () {
-        console.log("enter");
-        if(count == 0){
-            checks = "WHERE playlists = '10'";
-            count=count+1;
-        }else{
-            checks = checks + " OR playlists = '10'";
-        }
-    });
-    $('#check2').click(function () {
-        if(count == 0){
-            checks = "WHERE playlists = '11'";
-            count=count+1;
-        }else{
-            checks = checks + " OR playlists = '11'";
-        }
-    });
-    $('#check3').click(function () {
-        if(count == 0){
-            checks = "WHERE playlists = '14'";
-            count=count+1;
-        }else{
-            checks = checks + " OR playlists = '14'";
-        }
-    });
-    $('#check4').click(function () {
-        if(count == 0){
-            checks = "WHERE genre LIKE '%Rock%'";
-            count=count+1;
-        }else{
-            checks = checks + " OR genre LIKE '%Rock%'";
-        }
-    });
-    $('#check5').click(function () {
-        if(count == 0){
-            checks = "WHERE genre LIKE '%Pop%'";
-            count=count+1;
-        }else{
-            checks = checks + " OR genre LIKE '%Pop%'";
-        }
-    });
-    $('#check6').click(function () {
-        if(count == 0){
-            checks = "WHERE genre LIKE '%Blues%'";
-            count=count+1;
-        }else{
-            checks = checks + " OR genre LIKE '%Blues%'";
-        }
-    });
-    console.log("checks=");
-    console.log(checks);
-
-    return checks;
-}
 function send(data){
     console.log(data);
     $.ajax({
@@ -491,10 +452,7 @@ $(document).ready(function () {
         product_read(id);
 
     });
-    // $(document).on('click','#send',function () {
-    //     console.log(checks);
-    //     send(checks);
-    // });
+
     $(document).on('click','.map',function () {
         console.log("map");
         var script = document.createElement('script');

@@ -7,8 +7,12 @@
 			$sentence = connect::sentence("SELECT * FROM songs");
             return $sentence;
 		}
-		function select_product_filter($filter){
-			$sentence = connect::sentence("SELECT * FROM songs WHERE playlists=$filter");
+		function select_product_filter($filter,$filterb,$filter2){
+			if(isset($filter2)){
+				$sentence = connect::sentence("SELECT * FROM songs WHERE $filterb='$filter' AND genre LIKE '%$filter2%'");
+			}else{
+				$sentence = connect::sentence("SELECT * FROM songs WHERE $filterb LIKE '%$filter%'");
+			}
             return $sentence;
 		}
 		function select_product($id){

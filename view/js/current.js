@@ -7,11 +7,16 @@ $(document).ready(function() {
         $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
     }
     console.log($_GET['page']);
+    if ($_GET['page']){
+        var temp = $_GET['page'].split("&");//page=...
+        var page = temp[0];
+       
+            var element = document.getElementById(page);
+            element.classList.add("active");
+    }else{
+        controller_home.classList.add("active");
 
-    var temp = $_GET['page'].split("&");//page=...
-    var page = temp[0];
-   
-        var element = document.getElementById(page);
-        element.classList.add("active");
+    }
+
 //});
 });

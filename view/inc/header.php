@@ -31,9 +31,9 @@
                 </select>
                 
                 <div class="autocomplete"> 
+                    <input id="autocom" type="text" />
                     <div id="optionsauto"></div> 
-                        <input id="autocom" type="text" />
-                    </div>	
+                </div>	
                 <div ><a id="searchlist" data-tr="Search"></a></div>
             
             </form>
