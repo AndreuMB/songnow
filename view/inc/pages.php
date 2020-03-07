@@ -1,4 +1,5 @@
 <?php
+if (isset($_GET['page'])){
 	switch($_GET['page']){
 		case "controller_home":
 			include("module/home/controller/".$_GET['page'].".php");
@@ -35,7 +36,11 @@
 			include("view/inc/error".$_GET['page'].".php");
 		break;
 		default:
-			include("module/home/view/home.php");
+			include("module/home/view/home.html");
 		break;
 	}
+}else{
+	include("module/home/view/home.html");
+}
+	
 ?>

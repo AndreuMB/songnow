@@ -1,12 +1,13 @@
 $(document).ready(function () {
-    $.ajax({ 
+    console.log("ENTER in search");
+    $.ajax({
         type: "GET",
         dataType: "json",
         url: "module/search/controller/controller_search.php?op=firstdrop" 
     })
     .done(function(data) {
         var notrepeat = [];
-        console.log( data );
+        console.log("data firstdrop" + data );
          $.each(data, function(i, item) {///bucle para rellenar el dropdown1
             // console.log( item);
             var array = item.genre.split(":");
@@ -17,11 +18,6 @@ $(document).ready(function () {
                     notrepeat.push(array[i]);
                     console.log('Array no repeat: ' + notrepeat);
                 }
-                //  for(var y=0;y<notrepeat.length;y++){
-                //     //  if(notrepeat[y]!=array[i]){
-                //     //      notrepeat[y]=array[i]
-                //     //  }
-                //  }
              }
 
         });

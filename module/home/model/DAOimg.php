@@ -1,6 +1,6 @@
 <?php
-	$path = $_SERVER['DOCUMENT_ROOT'] . '/8_MVC_CRUD/';
-    include($path . "model/connect.php");
+	$path = $_SERVER['DOCUMENT_ROOT'] . '/SONGNOWv2/';
+    include_once($path . "model/connect.php");
     
 	class DAOimg{
 		function select_all_img(){

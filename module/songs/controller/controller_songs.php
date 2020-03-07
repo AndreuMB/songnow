@@ -2,7 +2,7 @@
 	$path = $_SERVER['DOCUMENT_ROOT'] . '/SONGNOWv2/';
 	include($path . "module/songs/model/DAOSongs.php");
 
-	session_start();
+	// session_start();
 
 	switch($_GET['op']){
 		case 'list':
@@ -10,10 +10,14 @@
 			break;
 			
 		case 'data':
-			if($_GET['filter']){
+			if(isset($_GET['filter'])){
 				try {
 					$daoshop = new DAOsongs();
-					$rlt = $daoshop->select_product_filter($_GET['filter'], $_GET['filterb'], $_GET['filter2']);
+					if(isset($_GET['filter2'])){
+						$rlt = $daoshop->select_product_filter($_GET['filter'], $_GET['filterb'], $_GET['filter2']);
+					}else{
+						$rlt = $daoshop->select_product_filter($_GET['filter'], $_GET['filterb'],null);
+					}
 				} catch (Exception $e) {
 					echo json_encode("error");
 				}

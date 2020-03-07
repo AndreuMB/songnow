@@ -95,12 +95,16 @@ function product_read(id){
 }
 
 function ajaxForSearch(durl) {
+    console.log("come ajax");
+    console.log(durl);
+
     $.ajax({
         type: "GET",
         dataType: "json",
-        url: durl,
+        url: durl,  
     })
      .done(function(data) {
+        console.log("return ajax");
         console.log("filter=");
         console.log(data);
 
@@ -154,12 +158,13 @@ function load(){
     console.log(cat);
     console.log(singer);
     if(cat){
+        console.log("enter" + cat);
         ajaxForSearch("module/songs/controller/controller_songs.php?op=data&filter=" + cat + "&filterb=playlists")
     }else if(car){
         product_read(car);
     }else if(id){
         product_read(id);
-    }else if(singer !=="false" && !id){
+    }else if(!(singer =="false" || singer == null ) && !id){
         console.log("enter in singer");
         ajaxForSearch("module/songs/controller/controller_songs.php?op=data&filter=" + singer + "&filter2=" + genre + "&filterb=singer")
     }else if(genre && singer=="false"){

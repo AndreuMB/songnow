@@ -1,7 +1,6 @@
 <?php
 	$path = $_SERVER['DOCUMENT_ROOT'] . '/SONGNOWv2/';
 	include($path . "module/search/model/DAOSearch.php");
-	session_start();
 
 	switch($_GET['op']){
 		case 'firstdrop':
@@ -16,7 +15,6 @@
 				echo json_encode("error");
 				exit;
 			}else{
-				print_r(explode(":",$rdo));
 				$favor = array();///inicializamos el array
 				foreach ($rdo as $row) {
 					array_push($favor, $row);//lo rellenamos con array_push
@@ -70,8 +68,8 @@
 				}
 				break;
 			
-		default:
-			include("view/inc/error/error404.php");
-			break;
+		// default:
+		// 	include($path . "view/inc/error404.php");
+		// 	break;
 	}
 ?>
