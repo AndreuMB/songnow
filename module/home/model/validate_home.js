@@ -69,8 +69,26 @@ function carousel () {
                     )                     
      })
 }
-function categories(){
-    $.ajax({
+function categories(){    
+    var current_page	=	1;
+    var loading			=	false;
+    var oldscroll		=	0;
+    scroll(current_page);
+    current_page = current_page + 1;
+    $(window).scroll(function() {
+		if( $(window).scrollTop() > oldscroll ){ //if we are scrolling down
+			if( ($(window).scrollTop() + $(window).height() >= $(document).height()  ) ) {
+				    if( ! loading ){
+                        scroll(current_page);
+                        current_page = current_page + 1;
+				    }
+			}
+		}
+	});
+}
+
+function scroll(current_page){
+        $.ajax({
         type: "GET",
         dataType: "json",
         url: "module/home/controller/controller_home.php?op=categories",
