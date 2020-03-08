@@ -28,7 +28,6 @@
 			try{
 				$DAOsearch = new DAOsearch();
 				$rdo = $DAOsearch->readSinger($_GET['id']);
-	
 			}catch (Exception $e){
 				echo json_encode("error");
 				exit;

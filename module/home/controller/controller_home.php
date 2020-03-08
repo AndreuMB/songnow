@@ -48,8 +48,27 @@
 				echo json_encode($lines);
 				exit;
 			}
-	break;
-
+		break;
+		case 'sum_view':
+			try{
+				$daouser = new DAOimg();
+				$rdo = $daouser->sum_view($_GET['id']);
+		   }catch (Exception $e){
+			   echo json_encode("error");
+			   exit;
+		   }
+		   if(!$rdo){
+			   echo json_encode("error");
+			   exit;
+		   }else{
+			   $lines=array();
+			   foreach($rdo as $row){
+				   array_push($lines, $row);
+			   }
+			   echo json_encode($lines);
+			   exit;
+		   }
+		break;
 		default:
 			include("view/inc/error404.php");
 		break;

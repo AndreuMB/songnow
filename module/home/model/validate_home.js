@@ -107,6 +107,20 @@ function categories(){
 
 }
 
+function sum_view(id){
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "module/home/controller/controller_home.php?op=sum_view&id=" + id,
+    })
+     .done(function(data) {
+         console.log("data = " + data);
+
+     
+})
+}
+
+
 function categ_shop(id){
     localStorage.setItem('filter', id);
     window.location.href = 'index.php?page=controller_songs&op=list';
@@ -126,7 +140,8 @@ $(document).ready(function () {
     $(document).on('click','.categ_img',function () {
         var id = this.getAttribute('id');
         console.log(id);
-        categ_shop(id);
+        sum_view(id);
+        // categ_shop(id);
     });
     $(document).on('click','.img_car',function () {
         var id = this.getAttribute('id');

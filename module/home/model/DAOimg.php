@@ -8,8 +8,12 @@
             return $sentence;
 		}
 		function select_img_categ(){
-			$sentence = connect::sentence("SELECT * FROM img WHERE type='categories'");
+			$sentence = connect::sentence("SELECT * FROM img WHERE type='categories' ORDER BY views DESC");
+            return $sentence;
+		}
+		function sum_view($id){
+			$sentence = connect::sentence("UPDATE img set views=views+1 WHERE img.id=$id");
             return $sentence;
 		}
 		
-	}
+	}	
