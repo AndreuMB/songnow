@@ -70,14 +70,70 @@ function carousel () {
      })
 }
 function categories(){
-    $.ajax({
+    // $.ajax({
+    //     type: "GET",
+    //     dataType: "json",
+    //     url: "module/home/controller/controller_home.php?op=categories",
+    // })
+    //  .done(function(data) {
+    //      console.log("categories");
+    //     console.log(data)
+    //     $('#categories').empty();
+
+    //     var img_categ=""
+    //     // var title_categ = ["POPULAR MUSIC", "POPULAR MUSIC SPAIN", "RECOMMEND FOR YOU"]; 
+
+                         
+    //     for(var i=0;i<data.length;i++){
+    //         img_categ=img_categ+
+    //     '<div class="col-4 col-12-medium">'+
+
+
+    //         '<section class="box feature">'+
+    //             '<a class="image featured"><img src="' + data[i].rute + '" class="categ_img" id=' + data[i].id + ' alt="" /></a>'+
+    //             '<div class="inner">'+
+    //                 '<header>'+
+    //                     '<h2 data-tr="' + data[i].name + '"></h2>'+
+    //                 '</header>'+
+    //             '</div>'+
+    //         '</section>'+
+
+    //     '</div>'
+
+    //     }
+    //     $("#categories").html(
+    //         img_categ
+    //         )                  
+    //     })
+
+    
+    var current_page	=	1;
+    var loading			=	false;
+    var oldscroll		=	0;
+    scroll(current_page);
+    current_page = current_page + 1;
+    $(window).scroll(function() {
+		if( $(window).scrollTop() > oldscroll ){ //if we are scrolling down
+			if( ($(window).scrollTop() + $(window).height() >= $(document).height()  ) ) {
+				    if( ! loading ){
+                        scroll(current_page);
+                        current_page = current_page + 1;
+				    }
+			}
+		}
+	});
+}
+
+function scroll(current_page){
+        $.ajax({
         type: "GET",
         dataType: "json",
-        url: "module/home/controller/controller_home.php?op=categories",
+        url: "module/home/controller/controller_home.php?op=scroll&p=" + current_page,
     })
      .done(function(data) {
+        console.log("data categ= ");
+          console.log("categories");
         console.log(data)
-        $('#categories').empty();
 
         var img_categ=""
         // var title_categ = ["POPULAR MUSIC", "POPULAR MUSIC SPAIN", "RECOMMEND FOR YOU"]; 
@@ -92,7 +148,7 @@ function categories(){
                 '<a class="image featured"><img src="' + data[i].rute + '" class="categ_img" id=' + data[i].id + ' alt="" /></a>'+
                 '<div class="inner">'+
                     '<header>'+
-                        '<h2>' + data[i].name + '</h2>'+
+                        '<h2 data-tr="' + data[i].name + '"></h2>'+
                     '</header>'+
                 '</div>'+
             '</section>'+
@@ -102,8 +158,8 @@ function categories(){
         }
         $("#categories").html(
             img_categ
-            )                  
-        })
+        )
+    })
 
 }
 
@@ -114,9 +170,7 @@ function sum_view(id){
         url: "module/home/controller/controller_home.php?op=sum_view&id=" + id,
     })
      .done(function(data) {
-         console.log("data = " + data);
-
-     
+         console.log("data = " + data);     
 })
 }
 

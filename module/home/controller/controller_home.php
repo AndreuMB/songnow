@@ -29,6 +29,39 @@
 				}
 		break;
 
+		case 'scroll':
+			// if(isset($_GET['p'])){
+				$page					=	intval( $_GET['p'] );
+				$current_page			=	$page;
+				$records_per_page		=	3; // records to show per page
+				$start					=	$current_page * $records_per_page;
+				$html					=	"";
+				// echo json_encode("start= " . $start . " records_page= " . $records_per_page);
+				try{
+					$daouser = new DAOimg();
+					$rdo = $daouser->categ_scroll($start, 0);
+			}catch (Exception $e){
+				echo json_encode("error");
+				exit;
+			}
+			if(!$rdo){
+				echo json_encode("error");
+				exit;
+			}else{
+				// while ( $row = mysqli_fetch_array($result,MYSQLI_ASSOC) ) {
+				// 	$html	.='<li><b>'.$row['name'].'</b><br> '.$row['message'].'</li>';
+				// }	
+				// //returning data
+				// $data	=	array('html' =>	$html);
+				$lines=array();
+				foreach($rdo as $row){
+					array_push($lines, $row);
+				}
+				echo json_encode($lines);
+				exit;
+			}
+		// }
+		break;
 		case 'categories':
 			try{
 				 $daouser = new DAOimg();

@@ -14,7 +14,7 @@
         <script src="view/assets/js/util.js"></script>
         <script src="view/assets/js/main.js"></script>
         <script src="module/shop/model/validate_shop.js"></script>
-        <script src="module/song/model/translate.js"></script>
+        <script src="view/js/translate.js"></script>
         <script src="module/search/view/search.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="view/assets/css/main.css" />

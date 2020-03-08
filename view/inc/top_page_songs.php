@@ -15,7 +15,7 @@
         <script src="view/assets/js/main.js"></script>
         <script src="module/search/view/search.js"></script>
         <script src="module/songs/model/validate_songs.js"></script>
-        <script src="module/song/model/translate.js"></script>
+        <script src="view/js/translate.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="view/assets/css/main.css" />
         <script src="view/js/current.js"></script>

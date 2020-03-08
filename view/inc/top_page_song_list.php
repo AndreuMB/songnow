@@ -25,7 +25,7 @@
 		<!-- <link href="view/css/style.css" rel="stylesheet" type="text/css" /> -->
 		<link rel="stylesheet" href="view/assets/css/main.css" />
 		<script src="module/song_list/model/validate_song_list.js"></script>
-		<script src="module/song/model/translate.js"></script>
+		<script src="view/js/translate.js"></script>
         <script src="module/search/view/search.js"></script>
 		<script type="text/javascript" src="view/js/jqwidgets/jqwidgets/jqxcore.js"></script>
 		<script type="text/javascript" src="view/js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
@@ -43,7 +43,7 @@
 
 		<link rel="stylesheet" href="view/assets/css/main.css" />
 		<script src="module/song_list/model/validate_song_list.js"></script>
-		<script src="module/song/model/translate.js"></script>
+		<script src="view/js/translate.js"></script>
 		<script src="view/js/current.js"></script>
     </head>
     <body>
