@@ -39,8 +39,20 @@ function products(){
         })
 
 }
-
+function sum_view(id){
+    console.log("sum " + id);
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "module/songs/controller/controller_songs.php?op=sum_view&id=" + id,
+    })
+     .done(function(data) {
+        console.log(data);
+        console.log("WORK");
+})
+}
 function product_read(id){
+    sum_view(id);
     console.log(id);
     console.log("carousel_jump");
     $.ajax({

@@ -62,7 +62,8 @@
 					$rdo = $daouser->insert_song($_POST);
 				}catch (Exception $e){
 					$callback = 'index.php?page=503';
-					die('<script>window.location.href="'.$callback .'";</script>');
+					// die('<script>window.location.href="'.$callback .'";</script>');
+					die("error1");
 				}
 				
 				if($rdo){
@@ -70,9 +71,10 @@
 					$callback = 'index.php?page=controller_song&op=list';
 					die('<script>window.location.href="'.$callback .'";</script>');
 				}else{
-					// die($rdo);
+					echo "error2= ";
+					die($rdo);
 					$callback = 'index.php?page=503';
-					die('<script>window.location.href="'.$callback .'";</script>');
+					// die('<script>window.location.href="'.$callback .'";</script>');
 				}
 			}
 			else{

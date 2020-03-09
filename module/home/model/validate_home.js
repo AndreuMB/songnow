@@ -69,7 +69,7 @@ function carousel () {
                     )                     
      })
 }
-function categories(){    
+function categories(){
     var current_page	=	1;
     var loading			=	false;
     var oldscroll		=	0;
@@ -91,11 +91,12 @@ function scroll(current_page){
         $.ajax({
         type: "GET",
         dataType: "json",
-        url: "module/home/controller/controller_home.php?op=categories",
+        url: "module/home/controller/controller_home.php?op=scroll&p=" + current_page,
     })
      .done(function(data) {
+        console.log("data categ= ");
+          console.log("categories");
         console.log(data)
-        $('#categories').empty();
 
         var img_categ=""
         // var title_categ = ["POPULAR MUSIC", "POPULAR MUSIC SPAIN", "RECOMMEND FOR YOU"]; 
@@ -110,7 +111,7 @@ function scroll(current_page){
                 '<a class="image featured"><img src="' + data[i].rute + '" class="categ_img" id=' + data[i].id + ' alt="" /></a>'+
                 '<div class="inner">'+
                     '<header>'+
-                        '<h2>' + data[i].name + '</h2>'+
+                        '<h2 data-tr="">' + data[i].name + '</h2>'+
                     '</header>'+
                 '</div>'+
             '</section>'+
@@ -120,9 +121,21 @@ function scroll(current_page){
         }
         $("#categories").html(
             img_categ
-            )                  
-        })
+        )
+    })
 
+}
+
+function sum_view(id){
+    console.log("sum" + id);
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "module/home/controller/controller_home.php?op=sum_view&id=" + id,
+    })
+     .done(function(data) {
+        categ_shop(id);   
+})
 }
 
 function categ_shop(id){
@@ -144,7 +157,7 @@ $(document).ready(function () {
     $(document).on('click','.categ_img',function () {
         var id = this.getAttribute('id');
         console.log(id);
-        categ_shop(id);
+        sum_view(id);
     });
     $(document).on('click','.img_car',function () {
         var id = this.getAttribute('id');

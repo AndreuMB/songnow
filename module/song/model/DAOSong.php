@@ -4,7 +4,6 @@
     
 	class DAOSong{
 		function insert_song($datos){
-			echo "enter";
 			$id_song=$datos[id_song];
         	$song_name=$datos[name];
         	$singer=$datos[singer];
@@ -17,15 +16,8 @@
 			$duration=rand(1,5) . ":" . rand(10,59);
 			$playlists=$datos[playlists];
 
-			// echo "ID SONG $id_song <br>";
-			// echo "SONG NAME $song_name <br>";
-			// echo "SINGER $singer <br>";
-			// echo "ALBUM $album <br>";
-			// echo "GENRE $genre <br>";
-			// echo "RELASE DATE $relase_date <br>";
-
-			$sentence = connect::sentence("INSERT INTO songs(id_song, song_name, singer, album, relase_date, genre, duration, playlists) 
-			VALUES ( '$id_song', '$song_name', '$singer', '$album', '$relase_date', '$mgenre', '$duration', '$playlists')");
+			$sentence = connect::sentence("INSERT INTO songs(id_song, song_name, singer, album, relase_date, genre, duration, playlists, views) 
+			VALUES ( '$id_song', '$song_name', '$singer', '$album', '$relase_date', '$mgenre', '$duration', '$playlists', '0')");
 			return $sentence;
 		}
 		

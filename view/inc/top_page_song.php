@@ -37,7 +37,7 @@
 		<script src="module/song/model/validate_song_update.js"></script>
 		<script src="module/song/model/validate_song_delete.js"></script>
 		<script src="module/song/model/validate_song_list.js"></script>
-		<script src="module/song/model/translate.js"></script>
+		<script src="view/js/translate.js"></script>
 		<script src="view/js/current.js"></script>
         <script src="module/search/view/search.js"></script>
 		<script type="text/javascript" src="view/js/jqwidgets/jqwidgets/jqxcore.js"></script>
