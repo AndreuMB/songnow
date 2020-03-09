@@ -1,7 +1,7 @@
 <?php
 	$path = $_SERVER['DOCUMENT_ROOT'] . '/SONGNOWv2/';
 	include($path . "module/shop/model/DAOimg.php");
-	session_start();
+	// session_start();
 
 	switch($_GET['op']){
 		case 'list':

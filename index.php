@@ -27,11 +27,11 @@
     	    include("view/inc/menu.php");
     	?>        
 	</div> 
-	<div id="">
+	<div id="page">
 		<?php 
 			include("view/inc/pages.php"); 
 		?>        
-		<br style="clear:both;" />
+		<!-- <br style="clear:both;" /> -->
 	</div>
 	<div id="footer">   	   
 		<?php

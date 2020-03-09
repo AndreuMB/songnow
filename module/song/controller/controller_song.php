@@ -1,7 +1,7 @@
 <?php
 	$path = $_SERVER['DOCUMENT_ROOT'] . '/SONGNOWv2/';
     include($path . "module/song/model/DAOSong.php");
-	session_start();
+	// session_start();
 
 	switch($_GET['op']){
 		case 'list';
@@ -201,39 +201,6 @@
 		break;
 
 		case 'delete_all':
-			// try{
-			// 	$daouser = new DAOSong();
-			// 	exit('HERE');
-			// 	$rdo = $daouser->delete_all();
-			// }catch (Exception $e){
-			// 	echo "error";
-			// 	exit;
-			// }
-			// if(!$rdo){
-			// 	echo "error";
-			// 	exit;
-			// }else{
-			// 	echo'<script type="text/javascript">alert("Deleted")</script>';
-			// 	exit;
-			// }
-			
-			// try{
-			// 	$daouser = new DAOSong();
-			// 	die('HERE');
-			// 	$rdo = $daouser->delete_all();
-			// }catch (Exception $e){
-			// 	$callback = 'index.php?page=503';
-			// 	die('<script>window.location.href="'.$callback .'";</script>');
-			// }
-			// if($rdo){
-			// 	echo '<script language="javascript">alert("Borrado en la base de datos correctamente")</script>';
-			// 	$callback = 'index.php?page=controller_song&op=list';
-			// 	die('<script>window.location.href="'.$callback .'";</script>');
-			// }else{
-			// 	$callback = 'index.php?page=503';
-			// 	die('<script>window.location.href="'.$callback .'";</script>');
-			// }
-
 			try{
 				$daouser = new DAOSong();
 				// die('HERE');

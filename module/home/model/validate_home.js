@@ -69,15 +69,34 @@ function carousel () {
                     )                     
      })
 }
-function categories(){
-    $.ajax({
+function categories(){    
+    var current_page	=	1;
+    var loading			=	false;
+    var oldscroll		=	0;
+    scroll(current_page);
+    current_page = current_page + 1;
+    $(window).scroll(function() {
+		if( $(window).scrollTop() > oldscroll ){ //if we are scrolling down
+			if( ($(window).scrollTop() + $(window).height() >= $(document).height()  ) ) {
+				    if( ! loading ){
+                        scroll(current_page);
+                        current_page = current_page + 1;
+				    }
+			}
+		}
+	});
+}
+
+function scroll(current_page){
+        $.ajax({
         type: "GET",
         dataType: "json",
-        url: "module/home/controller/controller_home.php?op=categories",
+        url: "module/home/controller/controller_home.php?op=scroll&p=" + current_page,
     })
      .done(function(data) {
+        console.log("data categ= ");
+          console.log("categories");
         console.log(data)
-        $('#categories').empty();
 
         var img_categ=""
         // var title_categ = ["POPULAR MUSIC", "POPULAR MUSIC SPAIN", "RECOMMEND FOR YOU"]; 
@@ -92,7 +111,7 @@ function categories(){
                 '<a class="image featured"><img src="' + data[i].rute + '" class="categ_img" id=' + data[i].id + ' alt="" /></a>'+
                 '<div class="inner">'+
                     '<header>'+
-                        '<h2>' + data[i].name + '</h2>'+
+                        '<h2 data-tr="' + data[i].name + '"></h2>'+
                     '</header>'+
                 '</div>'+
             '</section>'+
@@ -102,10 +121,22 @@ function categories(){
         }
         $("#categories").html(
             img_categ
-            )                  
-        })
+        )
+    })
 
 }
+
+function sum_view(id){
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "module/home/controller/controller_home.php?op=sum_view&id=" + id,
+    })
+     .done(function(data) {
+         console.log("data = " + data);     
+})
+}
+
 
 function categ_shop(id){
     localStorage.setItem('filter', id);
@@ -126,7 +157,8 @@ $(document).ready(function () {
     $(document).on('click','.categ_img',function () {
         var id = this.getAttribute('id');
         console.log(id);
-        categ_shop(id);
+        sum_view(id);
+        // categ_shop(id);
     });
     $(document).on('click','.img_car',function () {
         var id = this.getAttribute('id');

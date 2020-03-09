@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 09-03-2020 a las 17:23:47
--- Versión del servidor: 5.7.29-0ubuntu0.18.04.1
--- Versión de PHP: 7.2.24-0ubuntu0.18.04.3
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 08-03-2020 a las 20:03:28
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -47,13 +49,13 @@ INSERT INTO `img` (`id`, `name`, `type`, `rute`, `views`) VALUES
 (6, '', 'carousel', 'view/img/carousel6.jpg', 0),
 (7, '', 'carousel', 'view/img/carousel7.jpg', 0),
 (8, '', 'carousel', 'view/img/carousel8.jpg', 0),
-(10, 'POPULAR MUSIC', 'categories', 'view/img/categories1.jpg', 25),
-(11, 'POPULAR SPAIN', 'categories', 'view/img/categories2.jpg', 6),
-(14, 'RECOMMEND', 'categories', 'view/img/categories3.jpg', 35),
+(10, 'POPULAR MUSIC', 'categories', 'view/img/categories1.jpg', 23),
+(11, 'POPULAR SPAIN', 'categories', 'view/img/categories2.jpg', 1),
+(14, 'RECOMMEND', 'categories', 'view/img/categories3.jpg', 12),
 (15, 'PREMIUM', 'premium', 'view/img/premium.png', 0),
 (17, 'FAMILY', 'premium', 'view/img/family.png', 0),
 (18, 'STUDENT', 'premium', 'view/img/student.png', 0),
-(19, 'NEWER', 'categories', 'view/img/categories4.jpg', 1),
+(19, 'NEWER', 'categories', 'view/img/categories4.jpg', 0),
 (20, 'MORE LISTENED', 'categories', 'view/img/categories5.jpg', 0);
 
 -- --------------------------------------------------------
@@ -182,16 +184,20 @@ ALTER TABLE `img`
 --
 ALTER TABLE `map`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT de la tabla `premium`
 --
 ALTER TABLE `premium`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `songs`
 --
 ALTER TABLE `songs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

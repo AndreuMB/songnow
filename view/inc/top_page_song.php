@@ -18,12 +18,12 @@
 		
 
 
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.dropotron.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
+        <!-- <script src="view/assets/js/jquery.min.js"></script> -->
+        <script src="view/assets/js/jquery.dropotron.min.js"></script>
+        <script src="view/assets/js/browser.min.js"></script>
+        <script src="view/assets/js/breakpoints.min.js"></script>
+        <script src="view/assets/js/util.js"></script>
+        <script src="view/assets/js/main.js"></script>
 
 
         <script src="view/js/translate.js"></script>
@@ -37,7 +37,7 @@
 		<script src="module/song/model/validate_song_update.js"></script>
 		<script src="module/song/model/validate_song_delete.js"></script>
 		<script src="module/song/model/validate_song_list.js"></script>
-		<script src="module/song/model/translate.js"></script>
+		<script src="view/js/translate.js"></script>
 		<script src="view/js/current.js"></script>
         <script src="module/search/view/search.js"></script>
 		<script type="text/javascript" src="view/js/jqwidgets/jqwidgets/jqxcore.js"></script>

@@ -1,7 +1,7 @@
 <?php
-	$path = $_SERVER['DOCUMENT_ROOT'] . '/8_MVC_CRUD/';
-    include($path . "module/song_list/model/DAOSong.php");
-	session_start();
+	$path = $_SERVER['DOCUMENT_ROOT'] . '/SONGNOWv2/';
+    include_once($path . "module/song_list/model/DAOSong.php");
+	// session_start();
 
 	switch($_GET['op']){
 		case 'list':
