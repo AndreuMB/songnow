@@ -261,9 +261,7 @@ function initMap() {
     })
 }
 
-$(document).ready(function () {
-    load();
-
+function filters(){
     $.ajax({
         type: "GET",
         dataType: "json",
@@ -289,275 +287,45 @@ $(document).ready(function () {
         )
     })
 
-    // $.ajax({
-    //     type: "GET",
-    //     dataType: "json",
-    //     url: "module/search/controller/controller_search.php?op=firstdrop" 
-    // })
-    // .done(function(data) {
-    //     var notrepeat = [];
-    //      $.each(data, function(i, item) {///bucle para rellenar el dropdown1
-    //         // console.log( item);
-    //         var array = item.genre.split(":");
-    //         for(var i=0;i<array.length-1;i++){
-    //              console.log("array: " + array[i]);
-    //              console.log("norepeat: " + notrepeat[i]);
-    //              if (notrepeat.indexOf(array[i]) == -1) {
-    //                 notrepeat.push(array[i]);
-    //                 console.log('Array no repeat: ' + notrepeat);
-    //             }
-    //          }
-
-    //     });
-    //     for (var i=0;i<notrepeat.length;i++){
-    //         img_categ=img_categ+
-    //         '<input type="checkbox" id="check' + [i] + '" value="' + data[i].id + '" class="chk">' + data[i].name + '</br>'
-    //         $drop.append("<option>" + notrepeat[i] + "</option>")        
-    //     }
-    // })
-
-
-
-
-
-    var sqla="SELECT * FROM songs ORDER BY id_song ASC";
-    var sqlf="SELECT * FROM songs WHERE 0";
+    var checks="SELECT * FROM songs WHERE 0";
     var click = 0;
-    // if (click==0){
-    //     send(sqla);
-    // }else{
-    //     send(sqlf);
-    // }
-    // var count = 0;
-    var checks="";
     console.log("checks=");
-    $('#check0').click(function () {
-        console.log("check");
-
-        if ($('#check0').is(":checked")){
-            console.log("check");
-                sqlf = sqlf + " OR playlists = '10'";
+    $(document).on('click','.chk',function () {
+        var id = this.getAttribute('id');
+        var value = this.getAttribute('value');
+        console.log(id);
+        console.log(value);
+        if (click==0){
+            checks="SELECT * FROM songs WHERE 0"
+        }
+            if ($('#'+id).is(":checked")){
+                console.log("CHECK");
+                checks = checks + " OR playlists = '" + value + "'";
                 click=click+1;
                 console.log(click);
                 console.log(checks);
-        }else{
-            console.log("NOT CHECK");
-                checks = checks.replace(" OR playlists = '10'", "")
-                count=count-1;
-                console.log(count);
+            }else{
+                console.log("NOT CHECK");
+                checks = checks.replace(" OR playlists = '" + value + "'", "")
+                click=click-1;
+                console.log(click);
                 console.log(checks);
-        }
-        // send(checks);
-    });
-    $('#check1').click(function () {
-        if ($('#check1').is(":checked")){
-            if(count == 0){
-                checks = checks + " OR playlists = '11'";
-                count=count+1;
-                console.log(count);
-                console.log(checks);
+                if (click==0){
+                    checks="SELECT * FROM songs ORDER BY id_song ASC";
+                }
             }
-        }else{
-            if(count == 1){
-                checks = checks.replace(" OR playlists = '11'", "")
-                count=count-1;
-                console.log(count);
-                console.log(checks);
-            }
-        }
-        send(checks);
+            send(checks);
     });
-    // $('#check1').click(function () {
-    //     if ($('#check1').is(":checked")){
-    //         if(count == 0){
-    //             checks = "WHERE playlists = '10'";
-    //             count=count+1;
-    //             console.log(count);
-    //             console.log(checks);
-    //         }else{
-    //             checks = checks + " OR playlists = '10'";
-    //             count=count+1;
-    //             console.log(count);
-    //             console.log(checks);
+}
 
-    //         }
-    //     }else{
-    //         if(count == 1){
-    //             console.log("quit where");
-    //             checks.split("WHERE").pop()
-    //             count=count-1;
-    //             console.log(count);
-    //             console.log(checks);
-    //         }else{
-    //             // checks.split("OR").pop()
-    //             console.log("replace")
-    //             checks = checks.replace(" OR playlists = '10'", "")
-    //             count=count-1;
-    //             console.log(count);
-    //             console.log(checks);
-    //         }
-    //     }
-    //     // console.log("U SEE ME");
-    //     send(checks);
-    // });
-    // $('#check2').click(function () {
-    //     if ($('#check2').is(":checked")){
-    //         if(count == 0){
-    //             checks = "WHERE playlists = '11'";
-    //             count=count+1;
-    //             console.log(count);
-    //             console.log(checks);
-    //         }else{
-    //             count=count+1;
-    //             checks = checks + " OR playlists = '11'";
-    //             console.log(count);
-    //             console.log(checks);
 
-    //         }
-    //     }else{
-    //         if(count == 1){
-    //             console.log("quit where");
-    //             checks.split("WHERE").pop()
-    //             count=count-1;
-    //             console.log(count);
-    //             console.log(checks);
-    //         }else{
-    //             // checks.split("OR").pop()
-    //             checks = checks.replace(" OR playlists = '11'", "")
-    //             count=count-1;
-    //             console.log(count);
-    //             console.log(checks);
-    //         }
-    //     }
-    //     send(checks);
-    // });
-    // $('#check3').click(function () {
-    //     if ($('#check3').is(":checked")){
-    //         if(count == 0){
-    //             checks = "WHERE playlists = '14'";
-    //             count=count+1;
-    //             console.log(count);
-    //             console.log(checks);
-    //         }else{
-    //             checks = checks + " OR playlists = '14'";
-    //             count=count+1;
-    //             console.log(count);
-    //             console.log(checks);
+$(document).ready(function () {
+    load();
+    filters();
 
-    //         }
-    //     }else{
-    //         if(count == 1){
-    //             console.log("quit where");
-    //             checks.split("WHERE").pop()
-    //             count=count-1;
-    //             console.log(count);
-    //             console.log(checks);
-    //         }else{
-    //             // checks.split("OR").pop()
-    //             checks = checks.replace(" OR playlists = '14'", "")
-    //             count=count-1;
-    //             console.log(count);
-    //             console.log(checks);
-    //         }
-    //     }
-    //     send(checks);
-    // });
-    // $('#check4').click(function () {
-    //     if ($('#check4').is(":checked")){
-    //         if(count == 0){
-    //             checks = "WHERE genre LIKE '%Rock%'";
-    //             count=count+1;
-    //             console.log(count);
-    //             console.log(checks);
-    //         }else{
-    //             checks = checks + " OR genre LIKE '%Rock%'";
-    //             count=count+1;
-    //             console.log(count);
-    //             console.log(checks);
-
-    //         }
-    //     }else{
-    //         if(count == 1){
-    //             console.log("quit where");
-    //             checks.split("WHERE").pop()
-    //             count=count-1;
-    //             console.log(count);
-    //             console.log(checks);
-    //         }else{
-    //             // checks.split("OR").pop()
-    //             checks = checks.replace(" OR genre LIKE '%Rock%'", "")
-    //             count=count-1;
-    //             console.log(count);
-    //             console.log(checks);
-    //         }
-    //     }
-    //     send(checks);
-    // });
-    // $('#check5').click(function () {
-    //     if ($('#check5').is(":checked")){
-    //         if(count == 0){
-    //             checks = "WHERE genre LIKE '%Pop%'";
-    //             count=count+1;
-    //             console.log(count);
-    //             console.log(checks);
-    //         }else{
-    //             checks = checks + " OR genre LIKE '%Pop%'";
-    //             count=count+1;
-    //             console.log(count);
-    //             console.log(checks);
-
-    //         }
-    //     }else{
-    //         if(count == 1){
-    //             console.log("quit where");
-    //             checks.split("WHERE").pop()
-    //             count=count-1;
-    //             console.log(count);
-    //             console.log(checks);
-    //         }else{
-    //             // checks.split("OR").pop()
-    //             checks = checks.replace(" OR genre LIKE '%Pop%'", "")
-    //             count=count-1;
-    //             console.log(count);
-    //             console.log(checks);
-    //         }
-    //     }
-    //     send(checks);
-    // });
-    // $('#check6').click(function () {
-    //     if ($('#check6').is(":checked")){
-    //         if(count == 0){
-    //             checks = "WHERE genre LIKE '%Blues%'";
-    //             count=count+1;
-    //             console.log(count);
-    //             console.log(checks);
-    //         }else{
-    //             checks = checks + " OR genre LIKE '%Blues%'";
-    //             count=count+1;
-    //             console.log(count);
-    //             console.log(checks);
-
-    //         }
-    //     }else{
-    //         if(count == 1){
-    //             console.log("quit where");
-    //             checks.split("WHERE").pop()
-    //             count=count-1;
-    //             console.log(count);
-    //             console.log(checks);
-    //         }else{
-    //             // checks.split("OR").pop()
-    //             checks = checks.replace(" OR genre LIKE '%Blues%'", "")
-    //             console.log(count);
-    //             console.log(checks);
-    //         }
-    //     }
-    //     send(checks);
-    // });
     $(document).on('click','.song',function () {
         var id = this.getAttribute('id');
         product_read(id);
-
     });
 
     $(document).on('click','.map',function () {
@@ -567,7 +335,6 @@ $(document).ready(function () {
         script.async;
         script.defer;
         document.getElementsByTagName('script')[0].parentNode.appendChild(script);
-
     });
 
 })

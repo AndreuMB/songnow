@@ -24,9 +24,8 @@
             return $sentence;
 		}
 		function filters($checks){
-			// echo "ENTER1";
-			$sentence = connect::sentence("SELECT * FROM songs WHERE 0 $checks ORDER BY id_song ASC");
-			// echo "ENTER2";
+			// $sentence = connect::sentence("SELECT * FROM songs WHERE 0 $checks ORDER BY id_song ASC");
+			$sentence = connect::sentence("$checks");
 			return $sentence;
 
 
