@@ -16,7 +16,6 @@
             return $sentence;
 		}
 		function categ_scroll($records_per_page, $start){
-			// $sentence = connect::sentence("SELECT * FROM img WHERE type='categories' ORDER BY views DESC LIMIT $start, $records_per_page");->fetch_object();
 			$sentence = connect::sentence("SELECT * FROM img WHERE type='categories' ORDER BY views DESC LIMIT $records_per_page OFFSET $start");
             return $sentence;
 		}

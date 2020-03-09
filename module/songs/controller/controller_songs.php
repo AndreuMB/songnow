@@ -114,6 +114,23 @@
 			}
 		break;
 
+		case 'sum_view':
+			try{
+				$daouser = new DAOsongs();
+				$rdo = $daouser->sum_view($_GET['id']);
+		   }catch (Exception $e){
+			   echo json_encode("error");
+			   exit;
+		   }
+		   if(!$rdo){
+			   echo json_encode("error");
+			   exit;
+		   }else{
+			echo json_encode("done");
+			   exit;
+		   }
+		break;
+
 		default:
 			include("view/inc/error404.php");
 			break;

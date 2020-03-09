@@ -62,6 +62,23 @@
 			}
 		// }
 		break;
+		case 'sum_view':
+			try{
+				$daouser = new DAOimg();
+				$rdo = $daouser->sum_view($_GET['id']);
+		   }catch (Exception $e){
+			   echo json_encode("error");
+			   exit;
+		   }
+		   if(!$rdo){
+			   echo json_encode("error");
+			   exit;
+		   }else{
+			echo json_encode("done");
+			   exit;
+		   }
+		break;
+
 		case 'categories':
 			try{
 				 $daouser = new DAOimg();

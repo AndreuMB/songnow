@@ -69,7 +69,7 @@ function carousel () {
                     )                     
      })
 }
-function categories(){    
+function categories(){
     var current_page	=	1;
     var loading			=	false;
     var oldscroll		=	0;
@@ -111,7 +111,7 @@ function scroll(current_page){
                 '<a class="image featured"><img src="' + data[i].rute + '" class="categ_img" id=' + data[i].id + ' alt="" /></a>'+
                 '<div class="inner">'+
                     '<header>'+
-                        '<h2 data-tr="' + data[i].name + '"></h2>'+
+                        '<h2 data-tr="">' + data[i].name + '</h2>'+
                     '</header>'+
                 '</div>'+
             '</section>'+
@@ -127,13 +127,25 @@ function scroll(current_page){
 }
 
 function sum_view(id){
+    console.log("sum" + id);
     $.ajax({
         type: "GET",
         dataType: "json",
         url: "module/home/controller/controller_home.php?op=sum_view&id=" + id,
     })
      .done(function(data) {
-         console.log("data = " + data);     
+        categ_shop(id);   
+})
+}
+
+function sum_view(id){
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "module/home/controller/controller_home.php?op=sum_view&id=" + id,
+    })
+     .done(function(data) {
+        categ_shop(id);
 })
 }
 
@@ -158,7 +170,6 @@ $(document).ready(function () {
         var id = this.getAttribute('id');
         console.log(id);
         sum_view(id);
-        // categ_shop(id);
     });
     $(document).on('click','.img_car',function () {
         var id = this.getAttribute('id');

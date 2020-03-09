@@ -4,7 +4,7 @@
     
 	class DAOsongs{
 		function select_all_products(){
-			$sentence = connect::sentence("SELECT * FROM songs");
+			$sentence = connect::sentence("SELECT * FROM songs ORDER BY views DESC");
             return $sentence;
 		}
 		function select_product_filter($filter,$filterb,$filter2){
@@ -24,11 +24,11 @@
             return $sentence;
 		}
 		function filters($checks){
-			// $sentence = connect::sentence("SELECT * FROM songs WHERE 0 $checks ORDER BY id_song ASC");
 			$sentence = connect::sentence("$checks");
 			return $sentence;
-
-
 		}
-		
+		function sum_view($id){
+			$sentence = connect::sentence("UPDATE songs set views=views+1 WHERE songs.id_song='$id'");
+            return $sentence;
+		}
 	}
