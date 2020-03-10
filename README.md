@@ -19,9 +19,9 @@ File structure
 │       └── view       
 │
 ├── view
-│   └── libraries
-│       ├── css
-│       └── js
+│   ├── libraries
+│   |   ├── css
+│   |   └── js
 |   ├── img
 |   ├── inc
 |   ├── js
