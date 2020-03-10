@@ -1,44 +1,3 @@
-function products(){
-    console.log("songs");
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: "module/songs/controller/controller_songs.php?op=data",
-    })
-     .done(function(data) {
-        console.log("songs");
-        console.log(data);
-        $('#songs').empty();
-
-        var img_categ=""
-
-                         
-        for(var i=0;i<data.length;i++){
-            img_categ=img_categ+
-
-  '<tr>'+
-    '<td>' + data[i].song_name + '</td>'+
-    '<td>' + data[i].singer + '</td>'+
-    '<td>' + data[i].album + '</td>'+
-    '<td>' + data[i].duration + '</td>'+
-  '</tr>'
-
-
-        }
-        $("#songs").html(
-            '<table>'+
-            '<tr>'+
-            '<th>TITLE</th>'+
-            '<th>ARTIST</th>'+
-            '<th>ALBUM</th>'+
-            '<th>DURATION</th>'+
-          '</tr>'+
-            img_categ+
-            '</table>'
-            )                  
-        })
-
-}
 function sum_view(id){
     console.log("sum " + id);
     $.ajax({
@@ -142,11 +101,11 @@ function ajaxForSearch(durl) {
             '</div>'+
              '<table>'+
              '<tr>'+
-             '<th>TITLE</th>'+
-             '<th>ARTIST</th>'+
-             '<th>ALBUM</th>'+
-             '<th>DURATION</th>'+
-           '</tr>'+
+                '<th>TITLE</th>'+
+                '<th>ARTIST</th>'+
+                '<th>ALBUM</th>'+
+                '<th>DURATION</th>'+
+             '</tr>'+
              img_categ+
              '</table>'
              )                  
@@ -328,6 +287,36 @@ function filters(){
             }
             send(checks);
     });
+}
+function pagination(){
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "module/songs/controller/controller_songs.php?op=pagination&num_pages=1",
+    })
+     .done(function(data) {
+        console.log("pagination");
+        console.log(data)
+        $('#filters').empty();
+        var img_categ=""
+                         
+        for(var i=0;i<data.length;i++){
+            img_categ=img_categ+
+
+            '<input type="checkbox" id="check' + [i] + '" value="' + data[i].id + '" class="chk">' + data[i].name + '</br>'
+
+        }
+        $("#filters").html(
+            '<nav aria-label="Page navigation example">'+
+            '<ul class="pagination">'+
+              '<li class="page-item"><a class="page-link" href="#">Previous</a></li>'+
+              '<li class="page-item"><a class="page-link" href="#">1</a></li>'+
+              '<li class="page-item"><a class="page-link" href="#">3</a></li>'+
+              '<li class="page-item"><a class="page-link" href="#">Next</a></li>'+
+            '</ul>'+
+          '</nav>'
+        )
+    })
 }
 
 

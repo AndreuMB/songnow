@@ -31,4 +31,8 @@
 			$sentence = connect::sentence("UPDATE songs set views=views+1 WHERE songs.id_song='$id'");
             return $sentence;
 		}
+		function pagination(){
+			$sentence = connect::sentence("SELECT * FROM songs");
+			return $sentence;
+		}
 	}

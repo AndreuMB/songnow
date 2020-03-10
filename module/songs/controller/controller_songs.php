@@ -113,6 +113,21 @@
                 exit;
 			}
 		break;
+		case 'pagination':
+			try{
+				$daosongs = new DAOsongs();
+				$rdo = $daosongs->pagination();
+			}catch (Exception $e){
+				echo json_encode("error");
+				exit;
+			}if(!$rdo){
+				echo json_encode("error");
+				exit;
+			}else{
+				echo json_encode($rdo);
+				exit;
+			}
+		break;
 
 		case 'sum_view':
 			try{
