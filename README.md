@@ -1,6 +1,6 @@
-# songnow
+# SONGNOW
 Web application for playing songs 
-##Prerequisites
+## Prerequisites
 * Apache
 * Mysql
 ## Developed with
