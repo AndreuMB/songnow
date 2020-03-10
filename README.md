@@ -1,15 +1,16 @@
 # songnow
 Web application for playing songs 
 ##Prerequisites
--Apache
--Mysql
-##Developed with
--PHP
--JS
--JQuery
--Mysql / Database
+* Apache
+* Mysql
+## Developed with
+* PHP
+* JS
+* JQuery
+* Mysql / Database
 
-File structure
+## File structure
+```
 .
 ├── DataBase
 ├── modules
@@ -28,3 +29,4 @@ File structure
 │   └── langs
 ├── readme
 └── index
+```
