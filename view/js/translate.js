@@ -1,5 +1,5 @@
 function lang(lang) {
-  // Habilita las 2 siguientes para guardar la preferencia.
+  // Save preferences
   lang = lang || localStorage.getItem('app-lang') || 'english';
   localStorage.setItem('app-lang', lang);
 
@@ -15,7 +15,6 @@ function lang(lang) {
           allang[i].innerHTML = data.hasOwnProperty(lang)
           ? data[lang][allang[i].dataset.tr]
           : allang[i].dataset.tr;
-          // allang[i].innerHTML = data["strings"][allang[i].dataset.tr]
         }
       }
   });

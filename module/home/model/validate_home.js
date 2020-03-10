@@ -78,10 +78,8 @@ function categories(){
     $(window).scroll(function() {
 		if( $(window).scrollTop() > oldscroll ){ //if we are scrolling down
 			if( ($(window).scrollTop() + $(window).height() >= $(document).height()  ) ) {
-				    if( ! loading ){
-                        scroll(current_page);
-                        current_page = current_page + 1;
-				    }
+                    scroll(current_page);
+                    current_page = current_page + 1;
 			}
 		}
 	});

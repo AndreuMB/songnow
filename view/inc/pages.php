@@ -17,9 +17,6 @@ if (isset($_GET['page'])){
 		case "controller_song_list":
 			include("module/song_list/controller/".$_GET['page'].".php");
 		break;
-		case "services":
-			include("module/services/".$_GET['page'].".php");
-		break;
 		case "aboutus":
 			include("module/aboutus/".$_GET['page'].".php");
 		break;

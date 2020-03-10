@@ -5,7 +5,7 @@
 
 	switch($_GET['op']){
 		case 'list':
-			include("module/shop/view/shop.php");	
+			include("module/shop/view/shop.html");	
 			break;
 			
 		case 'data':
