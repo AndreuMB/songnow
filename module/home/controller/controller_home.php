@@ -35,7 +35,7 @@
 				$records_per_page		=	3; // records to show per page
 				$start					=	$current_page * $records_per_page;
 				$html					=	"";
-				try{
+			try{
 					$daouser = new DAOimg();
 					$rdo = $daouser->categ_scroll($start, 0);
 			}catch (Exception $e){

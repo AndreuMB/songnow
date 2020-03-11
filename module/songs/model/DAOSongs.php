@@ -32,7 +32,11 @@
             return $sentence;
 		}
 		function pagination(){
-			$sentence = connect::sentence("SELECT * FROM songs");
+			$sentence = connect::sentence("SELECT count(*) tsongs FROM songs");
+			return $sentence;
+		}
+		function page_now($records_per_page, $start){
+			$sentence = connect::sentence("SELECT * FROM songs ORDER BY views DESC LIMIT $records_per_page OFFSET $start");
 			return $sentence;
 		}
 	}

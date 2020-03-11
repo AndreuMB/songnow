@@ -1,17 +1,5 @@
 <?php
 	class connect{
-		// public static function con(){
-		// 	$host = '127.0.0.1';  
-    	// 	$user = "php";                     
-    	// 	$pass = "php";                             
-    	// 	$db = "crud_users";                      
-    	// 	$port = 3306;                           
-    	// 	$tabla="usuario";
-    		
-    	// 	$conexion = mysqli_connect($host, $user, $pass, $db, $port)or die(mysql_error());
-		// 	return $conexion;
-		// }
-
 		public static function consong(){
 			$host = 'localhost';  
     		$user = "php";                     

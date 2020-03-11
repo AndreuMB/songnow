@@ -104,7 +104,6 @@
                 echo json_encode("error");
                 exit;
             }else{
-				// echo "come here";
                 $lawyer = array();
                 foreach ($rdo as $row){
                     array_push($lawyer, $row);
@@ -113,6 +112,32 @@
                 exit;
 			}
 		break;
+
+		case 'pages':
+			$page					=	intval( $_GET['num_page'] );
+			$current_page			=	$page;
+			$records_per_page		=	3; // records to show per page
+			$start					=	$current_page * $records_per_page;
+		try{
+				$daouser = new DAOsongs();
+				$rdo = $daouser->page_now($records_per_page, $start);
+		}catch (Exception $e){
+			echo json_encode("error");
+			exit;
+		}
+		if(!$rdo){
+			echo json_encode("error");
+			exit;
+		}else{
+			$lines=array();
+			foreach($rdo as $row){
+				array_push($lines, $row);
+			}
+			echo json_encode($lines);
+			exit;
+		}
+		break;
+
 		case 'pagination':
 			try{
 				$daosongs = new DAOsongs();
@@ -124,7 +149,11 @@
 				echo json_encode("error");
 				exit;
 			}else{
-				echo json_encode($rdo);
+				$lawyer = array();
+                foreach ($rdo as $row){
+                    array_push($lawyer, $row);
+                }
+                echo json_encode($lawyer);
 				exit;
 			}
 		break;

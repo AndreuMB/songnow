@@ -292,37 +292,82 @@ function pagination(){
     $.ajax({
         type: "GET",
         dataType: "json",
-        url: "module/songs/controller/controller_songs.php?op=pagination&num_pages=1",
+        url: "module/songs/controller/controller_songs.php?op=pagination",
     })
      .done(function(data) {
         console.log("pagination");
-        console.log(data)
-        $('#filters').empty();
-        var img_categ=""
-                         
-        for(var i=0;i<data.length;i++){
-            img_categ=img_categ+
-
-            '<input type="checkbox" id="check' + [i] + '" value="' + data[i].id + '" class="chk">' + data[i].name + '</br>'
-
-        }
-        $("#filters").html(
-            '<nav aria-label="Page navigation example">'+
-            '<ul class="pagination">'+
-              '<li class="page-item"><a class="page-link" href="#">Previous</a></li>'+
-              '<li class="page-item"><a class="page-link" href="#">1</a></li>'+
-              '<li class="page-item"><a class="page-link" href="#">3</a></li>'+
-              '<li class="page-item"><a class="page-link" href="#">Next</a></li>'+
-            '</ul>'+
-          '</nav>'
-        )
+        console.log(data);
+        console.log(data[0].tsongs);
+        var num_page;
+        $("#pagination").bootpag({
+            total: data[0].tsongs,
+            page: num_page,
+            maxVisible: 5,
+            next: 'next',
+            prev: 'prev'
+        }).on("page", function (e, num) {
+            console.log(num);
+            pages(num);
+            num_page=num;
+        });
     })
+}
+
+function pages(page_now){
+    console.log("page_now= " + page_now)
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "module/songs/controller/controller_songs.php?op=pages&num_page=" + page_now,  
+    })
+     .done(function(data) {
+        console.log("songs in this page= ");
+        console.log(data);
+
+        $('#songs').empty();
+ 
+        var img_categ=""
+ 
+        
+        for(var i=0;i<data.length;i++){
+             img_categ=img_categ+
+            '<tr class="song" id=' + data[i].id_song + '>'+
+                '<td>' + data[i].song_name + '</td>'+
+                '<td>' + data[i].singer + '</td>'+
+                '<td>' + data[i].album + '</td>'+
+                '<td>' + data[i].duration + '</td>'+
+            '</tr>'
+         }
+
+         $("#songs").html(
+            '<div class="map">'+
+            '<img src="view/img/map.png" alt="map" id=map_img style="width:100%;">'+
+            '<div class="centered" data-tr="See map"></div>'+
+            '</div>'+
+             '<table>'+
+             '<tr>'+
+                '<th>TITLE</th>'+
+                '<th>ARTIST</th>'+
+                '<th>ALBUM</th>'+
+                '<th>DURATION</th>'+
+             '</tr>'+
+             img_categ+
+             '</table>'
+             )                  
+
+         localStorage.removeItem('filter');
+         localStorage.removeItem('genre');
+         localStorage.removeItem('singer');
+         
+
+     })
 }
 
 
 $(document).ready(function () {
     load();
     filters();
+    pagination();
 
     $(document).on('click','.song',function () {
         var id = this.getAttribute('id');
