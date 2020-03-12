@@ -115,8 +115,8 @@
 
 		case 'pages':
 			$page					=	intval( $_GET['num_page'] );
-			$current_page			=	$page;
-			$records_per_page		=	3; // records to show per page
+			$current_page			=	$page - 1;
+			$records_per_page		=	$_GET['show_songs']; // records to show per page
 			$start					=	$current_page * $records_per_page;
 		try{
 				$daouser = new DAOsongs();

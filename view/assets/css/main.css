@@ -2773,11 +2773,11 @@ input::-moz-focus-inner {
 
 	}
 	.carousel {overflow:hidden}
-	#map{
+	/* #map{
 		margin: 20px;
 		height: 800px;
 		width: 1058px;
-	}
+	} */
 
 	.contact{
 		margin:20px;
@@ -2978,11 +2978,11 @@ table {
 	margin: 0px;
 	padding: 0px;
 }
-#map{
+/* #map{
 	color: black;
 	height: 700px;
 	width: auto;
-}
+} */
 /* input{
 	margin: 50px;
 	height: 20px;
