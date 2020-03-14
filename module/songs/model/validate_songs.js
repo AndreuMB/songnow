@@ -65,48 +65,6 @@ function product_read(id){
 
 }
 
-function send(data){
-    console.log(data);
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: "module/songs/controller/controller_songs.php?op=filter&checks=" + data,
-    })
-     .done(function(data) {
-        console.log(data);
-        $('#songs').empty();
- 
-        var img_categ=""
- 
-        
-        for(var i=0;i<data.length;i++){
-             img_categ=img_categ+
-            '<tr class="song" id=' + data[i].id_song + '>'+
-                '<td>' + data[i].song_name + '</td>'+
-                '<td>' + data[i].singer + '</td>'+
-                '<td>' + data[i].album + '</td>'+
-                '<td>' + data[i].duration + '</td>'+
-            '</tr>'
-         }
-
-         $("#songs").html(
-            '<div class="map">'+
-            '<img src="view/img/map.png" alt="map" id=map_img style="width:100%;">'+
-            '<div class="centered" data-tr="See map"></div>'+
-            '</div>'+
-             '<table>'+
-             '<tr>'+
-             '<th>TITLE</th>'+
-             '<th>ARTIST</th>'+
-             '<th>ALBUM</th>'+
-             '<th>DURATION</th>'+
-           '</tr>'+
-             img_categ+
-             '</table>'
-             )         
-    });
-}
-
 function initMap() {
     $("#map").css({
         "color": "black", 
@@ -237,7 +195,7 @@ function load(){
         console.log("genre: " + genre);
         ajaxForSearch("module/songs/controller/controller_songs.php?op=data&filter=" + genre + "&filterb=genre")
     }else{
-        ajaxForSearch("module/songs/controller/controller_songs.php?op=data")
+        pagination();
     }
    
 }
@@ -295,6 +253,44 @@ function ajaxForSearch(durl) {
      })
     }
 
+    function send(data){
+        var sql = "";
+        sql=data;
+        data2 = data.replace("*", "COUNT(*) tsongs")
+        console.log(data);
+        console.log(data2);
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "module/songs/controller/controller_songs.php?op=filter&checks=" + data2,
+        })
+         .done(function(data) {
+            console.log("pagination");
+            console.log("sql come here= ")
+            console.log(sql);
+            console.log(data);
+            console.log(data[0].tsongs);
+            var num_page;
+            var show_songs=3;
+            var total_pages=data[0].tsongs/show_songs;
+            if ((data[0].tsongs%show_songs) !== 0){
+                total_pages=total_pages+1;
+            }
+            pages(1, show_songs, sql);
+            $("#pagination").bootpag({
+                total: total_pages,
+                page: num_page,
+                maxVisible: 5,
+                next: 'next',
+                prev: 'prev'
+            }).on("page", function (e, num) {
+                console.log(num);
+                pages(num, show_songs, sql);
+                num_page=num;
+            });
+        });
+    }
+
 function pagination(){
     $.ajax({
         type: "GET",
@@ -311,7 +307,8 @@ function pagination(){
         if ((data[0].tsongs%show_songs) !== 0){
             total_pages=total_pages+1;
         }
-        pages(1, show_songs);
+        var sql = "SELECT * FROM songs";
+        pages(1, show_songs, sql);
         $("#pagination").bootpag({
             total: total_pages,
             page: num_page,
@@ -320,19 +317,21 @@ function pagination(){
             prev: 'prev'
         }).on("page", function (e, num) {
             console.log(num);
-            pages(num, show_songs);
+            pages(num, show_songs, sql);
             num_page=num;
         });
     })
 }
 
-function pages(page_now, show_songs){
+function pages(page_now, show_songs, sql){
     console.log("page_now= " + page_now);
     console.log("show_songs= " + show_songs);
+    console.log("sql= " + sql);
+
     $.ajax({
         type: "GET",
         dataType: "json",
-        url: "module/songs/controller/controller_songs.php?op=pages&num_page=" + page_now + "&show_songs=" + show_songs,  
+        url: "module/songs/controller/controller_songs.php?op=pages&num_page=" + page_now + "&show_songs=" + show_songs + "&sql=" + sql,  
     })
      .done(function(data) {
         console.log("songs in this page= ");
@@ -381,7 +380,6 @@ function pages(page_now, show_songs){
 $(document).ready(function () {
     load();
     filters();
-    pagination();
 
     $(document).on('click','.song',function () {
         var id = this.getAttribute('id');

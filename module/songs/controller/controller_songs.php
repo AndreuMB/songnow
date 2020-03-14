@@ -118,9 +118,11 @@
 			$current_page			=	$page - 1;
 			$records_per_page		=	$_GET['show_songs']; // records to show per page
 			$start					=	$current_page * $records_per_page;
+			$sql 					= 	$_GET['sql'];
+
 		try{
-				$daouser = new DAOsongs();
-				$rdo = $daouser->page_now($records_per_page, $start);
+			$daouser = new DAOsongs();
+			$rdo = $daouser->page_now($records_per_page, $sql, $start);
 		}catch (Exception $e){
 			echo json_encode("error");
 			exit;

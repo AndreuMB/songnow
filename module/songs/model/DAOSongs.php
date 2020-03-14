@@ -35,8 +35,9 @@
 			$sentence = connect::sentence("SELECT count(*) tsongs FROM songs");
 			return $sentence;
 		}
-		function page_now($records_per_page, $start){
-			$sentence = connect::sentence("SELECT * FROM songs ORDER BY views DESC LIMIT $records_per_page OFFSET $start");
+		function page_now($records_per_page,$sql,$start){
+			// echo "$sql ORDER BY views DESC LIMIT $records_per_page OFFSET $start";
+			$sentence = connect::sentence("$sql ORDER BY views DESC LIMIT $records_per_page OFFSET $start");
 			return $sentence;
 		}
 	}
