@@ -21,5 +21,6 @@
         <link rel="stylesheet" href="view/assets/css/main.css" />
         <script src="view/js/current.js"></script>
         <script src="module/search/view/search.js"></script>
+        <script src="module/GMaps/gmapsapi.js"></script>
     </head>
     <body class="is-preload homepage">

@@ -28,7 +28,6 @@ function carousel () {
         url: "module/home/controller/controller_home.php?op=carousel",
     })
      .done(function(data) {
-        console.log("sdfa");
         console.log(data);
         $('#carousel-example').empty();
         // $('<div></div>').attr('id','Div1').appendTo('#carousel-example');
@@ -159,11 +158,77 @@ function carousel_details(id){
 
 }
 
+function api(){
+    console.log("api");
+    $.getJSON("http://openlibrary.org/search.json?q=the+lord+of+the+rings",
+    function(data){
+        $("#images").empty();
+        console.log("api_enter");
+        console.log(data)
+        var img_categ=""                         
+        for(var i=0;i<4;i++){
+            img_categ=img_categ+
+        '<div class="col-4 col-12-medium">'+
+
+
+            '<section class="box feature">'+
+                '<a class="image featured"><img src="http://covers.openlibrary.org/b/isbn/' + data.docs[i].isbn[0] + '.jpg" class="categ_img" id=' + data.docs[i].author_name + ' alt="" /></a>'+
+                '<div class="inner">'+
+                    '<header>'+
+                        '<h2 data-tr="">' + data.docs[i].title + '</h2>'+
+                    '</header>'+
+                '</div>'+
+            '</section>'+
+
+        '</div>'
+
+        }
+        $("#api").html(
+            img_categ
+        )
+    });
+
+    // $.ajax({
+    //     type: "GET",
+    //     dataType: "json",
+    //     url: "http://openlibrary.org/search.json?q=the+lord+of+the+rings",
+    // })
+    //  .done(function(data) {
+    //     console.log("api_enter");
+    //     console.log(data)
+
+    //     var img_categ=""
+    //     // var title_categ = ["POPULAR MUSIC", "POPULAR MUSIC SPAIN", "RECOMMEND FOR YOU"]; 
+
+                         
+    //     for(var i=0;i<data.length;i++){
+    //         img_categ=img_categ+
+    //     '<div class="col-4 col-12-medium">'+
+
+
+    //         '<section class="box feature">'+
+    //             '<a class="image featured"><img src="' + data[i].cover_i + '" class="categ_img" id=' + data[i].author_name + ' alt="" /></a>'+
+    //             '<div class="inner">'+
+    //                 '<header>'+
+    //                     '<h2 data-tr="">' + data[i].title + '</h2>'+
+    //                 '</header>'+
+    //             '</div>'+
+    //         '</section>'+
+
+    //     '</div>'
+
+    //     }
+    //     $("#categories").html(
+    //         img_categ
+    //     )
+    // })
+}
 
 $(document).ready(function () {
     console.log("home");
     carousel();
     categories();
+    api();
     $(document).on('click','.categ_img',function () {
         var id = this.getAttribute('id');
         console.log(id);
