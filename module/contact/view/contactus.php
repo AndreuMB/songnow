@@ -4,7 +4,7 @@
 			<div id="mapa"></div>
             <div class="contact">
                     <h2>Donde estamos:</h2>
-                    <div id="map"></div>
+                    <div id="map2"></div>
             </div>
             <div class="contact">
 					<h2>Contacto:</h2>

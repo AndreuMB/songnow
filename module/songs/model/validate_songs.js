@@ -22,6 +22,7 @@ function product_read(id){
      .done(function(data) {
         console.log("carousel=")
         console.log(data);
+        $('#api').empty();
         $('#songs').empty();
         $("#songs").html(
 
@@ -57,6 +58,7 @@ function product_read(id){
         '</div>'
 
             )
+            api_details(data.singer);
             localStorage.removeItem('carousel');
             localStorage.removeItem('id');
 
@@ -376,14 +378,78 @@ function pages(page_now, show_songs, sql){
      })
 }
 
+function api_details(data){
+    console.log("api");
+    $.getJSON("https://www.googleapis.com/books/v1/volumes?q=" + data,
+    function(data){
+        $("#images").empty();
+        console.log("api_enter");
+        console.log(data)
+        var img_categ=""                         
+        for(var i=0;i<3;i++){
+            img_categ=img_categ+
+        '<div class="col-4 col-12-medium">'+
+            '<section class="box feature">'+
+                '<a class="image featured"><img src="' + data.items[i].volumeInfo.imageLinks.thumbnail + '" class="related" id=' + data.items[i].volumeInfo.previewLink + ' alt="" /></a>'+
+                '<div class="inner">'+
+                    '<header>'+
+                        '<h2 data-tr="">' + data.items[i].volumeInfo.title + '</h2>'+
+                    '</header>'+
+                '</div>'+
+            '</section>'+
+
+        '</div>'
+
+        }
+        $("#api").html(
+            img_categ
+        )
+    });
+}
+
+function api(){
+    console.log("api");
+    $.getJSON("https://www.googleapis.com/books/v1/volumes?q=Lady Gaga",
+    function(data){
+        $("#images").empty();
+        console.log("api_enter");
+        console.log(data)
+        var img_categ=""                         
+        for(var i=0;i<3;i++){
+            img_categ=img_categ+
+        '<div class="col-4 col-12-medium">'+
+            '<section class="box feature">'+
+                '<a class="image featured"><img src="' + data.items[i].volumeInfo.imageLinks.thumbnail + '" class="related" id=' + data.items[i].volumeInfo.previewLink + ' alt="" /></a>'+
+                '<div class="inner">'+
+                    '<header>'+
+                        '<h2 data-tr="">' + data.items[i].volumeInfo.title + '</h2>'+
+                    '</header>'+
+                '</div>'+
+            '</section>'+
+
+        '</div>'
+
+        }
+        $("#api").html(
+            img_categ
+        )
+    });
+}
+
 
 $(document).ready(function () {
     load();
     filters();
+    api();
 
     $(document).on('click','.song',function () {
         var id = this.getAttribute('id');
         product_read(id);
+    });
+    $(document).on('click','.related',function () {
+        var id = this.getAttribute('id');
+        console.log(id);
+        window.location.href = id;
     });
 
     $(document).on('click','.map',function () {

@@ -160,22 +160,20 @@ function carousel_details(id){
 
 function api(){
     console.log("api");
-    $.getJSON("http://openlibrary.org/search.json?q=the+lord+of+the+rings",
+    $.getJSON("https://www.googleapis.com/books/v1/volumes?q=freddie mercury",
     function(data){
         $("#images").empty();
         console.log("api_enter");
         console.log(data)
         var img_categ=""                         
-        for(var i=0;i<4;i++){
+        for(var i=0;i<3;i++){
             img_categ=img_categ+
         '<div class="col-4 col-12-medium">'+
-
-
             '<section class="box feature">'+
-                '<a class="image featured"><img src="http://covers.openlibrary.org/b/isbn/' + data.docs[i].isbn[0] + '.jpg" class="categ_img" id=' + data.docs[i].author_name + ' alt="" /></a>'+
+                '<a class="image featured"><img src="' + data.items[i].volumeInfo.imageLinks.thumbnail + '" class="related" id=' + data.items[i].volumeInfo.previewLink + ' alt="" /></a>'+
                 '<div class="inner">'+
                     '<header>'+
-                        '<h2 data-tr="">' + data.docs[i].title + '</h2>'+
+                        '<h2 data-tr="">' + data.items[i].volumeInfo.title + '</h2>'+
                     '</header>'+
                 '</div>'+
             '</section>'+
@@ -187,41 +185,6 @@ function api(){
             img_categ
         )
     });
-
-    // $.ajax({
-    //     type: "GET",
-    //     dataType: "json",
-    //     url: "http://openlibrary.org/search.json?q=the+lord+of+the+rings",
-    // })
-    //  .done(function(data) {
-    //     console.log("api_enter");
-    //     console.log(data)
-
-    //     var img_categ=""
-    //     // var title_categ = ["POPULAR MUSIC", "POPULAR MUSIC SPAIN", "RECOMMEND FOR YOU"]; 
-
-                         
-    //     for(var i=0;i<data.length;i++){
-    //         img_categ=img_categ+
-    //     '<div class="col-4 col-12-medium">'+
-
-
-    //         '<section class="box feature">'+
-    //             '<a class="image featured"><img src="' + data[i].cover_i + '" class="categ_img" id=' + data[i].author_name + ' alt="" /></a>'+
-    //             '<div class="inner">'+
-    //                 '<header>'+
-    //                     '<h2 data-tr="">' + data[i].title + '</h2>'+
-    //                 '</header>'+
-    //             '</div>'+
-    //         '</section>'+
-
-    //     '</div>'
-
-    //     }
-    //     $("#categories").html(
-    //         img_categ
-    //     )
-    // })
 }
 
 $(document).ready(function () {
@@ -233,6 +196,11 @@ $(document).ready(function () {
         var id = this.getAttribute('id');
         console.log(id);
         sum_view(id);
+    });
+    $(document).on('click','.related',function () {
+        var id = this.getAttribute('id');
+        console.log(id);
+        window.location.href = id;
     });
     $(document).on('click','.img_car',function () {
         var id = this.getAttribute('id');
