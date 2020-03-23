@@ -1,20 +1,24 @@
 <?php
-    if ((isset($_GET['page'])) && ($_GET['page']==="controller_user") ){
-		include("view/inc/top_page_user.php");
-	}elseif ((isset($_GET['page'])) && ($_GET['page']==="controller_song")){
+    if (isset($_GET['page'])){
+		if ($_GET['page']==="controller_song"){
 			include("view/inc/top_page_song.php");
-	}elseif((isset($_GET['page'])) && ($_GET['page']==="controller_song_list")){
-		include("view/inc/top_page_song_list.php");
-	}elseif((isset($_GET['page'])) && ($_GET['page']==="controller_home")){
-		include("view/inc/top_page_home.php");
-	}elseif((isset($_GET['page'])) && ($_GET['page']==="controller_shop")){
-		include("view/inc/top_page_shop.php");
-	}elseif((isset($_GET['page'])) && ($_GET['page']==="controller_songs")){
-		include("view/inc/top_page_songs.php");
+		}elseif($_GET['page']==="controller_song_list"){
+			include("view/inc/top_page_song_list.php");
+		}elseif($_GET['page']==="controller_home"){
+			include("view/inc/top_page_home.php");
+		}elseif($_GET['page']==="controller_shop"){
+			include("view/inc/top_page_shop.php");
+		}elseif($_GET['page']==="controller_songs"){
+			include("view/inc/top_page_songs.php");
+		}elseif($_GET['page']==="controller_login"){
+			include("view/inc/top_page_login.php");
+		}else{
+			include("view/inc/top_page.php");
+		}
 	}else{
 		include("view/inc/top_page.php");
 	}
-	session_start();
+	// session_start();
 ?>
 <div id="wrapper">		
     <div id="header">    	
@@ -31,7 +35,6 @@
 		<?php 
 			include("view/inc/pages.php"); 
 		?>        
-		<!-- <br style="clear:both;" /> -->
 	</div>
 	<div id="footer">   	   
 		<?php

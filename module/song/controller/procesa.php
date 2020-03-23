@@ -1,7 +1,7 @@
 <?php
 	echo "PROCESSA";
 	require_once("../model/DAOSong.php");
-	session_start();
+	// session_start();
 	//print_r($_SESSION);
 	//die();
 	

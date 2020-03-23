@@ -143,10 +143,13 @@ function sum_view(id){
     })
      .done(function(data) {
         categ_shop(id);
-})
+    })
 }
 
-
+function account(id){
+    localStorage.setItem('account', id);
+    window.location.href = 'index.php?page=controller_login&op=list';
+}
 function categ_shop(id){
     localStorage.setItem('filter', id);
     window.location.href = 'index.php?page=controller_songs&op=list';
@@ -206,5 +209,10 @@ $(document).ready(function () {
         var id = this.getAttribute('id');
         console.log(id);
         carousel_details(id);
+    });
+    $(document).on('click','.account',function () {
+        var id = this.getAttribute('id');
+        console.log(id);
+        account(id);
     });
 });

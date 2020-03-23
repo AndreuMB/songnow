@@ -19,6 +19,6 @@
         <script src="view/assets/bootpag/jquery.bootpag.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="view/assets/css/main.css" />
-        <script src="view/js/current.js"></script>
+        <script src="view/js/menu.js"></script>
         <script src="module/GMaps/gmapsapi.js"></script>
     </head>

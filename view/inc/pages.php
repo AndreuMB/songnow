@@ -26,6 +26,9 @@ if (isset($_GET['page'])){
 		case "controller_shop":
 			include("module/shop/controller/".$_GET['page'].".php");
 		break;
+		case "controller_login":
+			include("module/login/controller/".$_GET['page'].".php");
+		break;
 		case "404":
 			include("view/inc/error".$_GET['page'].".php");
 		break;

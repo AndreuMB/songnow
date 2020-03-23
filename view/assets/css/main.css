@@ -7,7 +7,7 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-html, body, div, span, applet, object,
+/* html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
 code, del, dfn, em, img, ins, kbd, q, s, samp,
@@ -23,7 +23,8 @@ section, summary, time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;}
+	vertical-align: baseline;
+} */
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -2991,3 +2992,48 @@ table {
 .autoelement{
 	background-color: black;
 }
+/* login */
+
+#login {
+	position: relative;
+	padding: 4.5em;
+	background:rgb(37, 37, 37);
+	color: yellow;
+}
+
+	#login h2 {
+		font-size: 3.5em;
+		margin: 0.1em 0 0.35em 0;
+	}
+
+	#login p {
+		margin: 1em;
+	}
+
+	#login .button {
+		width: 100%;
+		margin-bottom: 0.5em;
+	}
+
+		#login .button.icon:before {
+			position: absolute;
+			right: 0.15em;
+			top: 50%;
+			margin-top: -0.5em;
+		}
+
+		#login .button.alt {
+			margin-bottom: 0;
+			background: yellow;
+			color: black;
+		}
+
+	#login ul {
+		list-style: none;
+		padding-left: 0;
+		margin: 0 0 0 2em;
+	}
+
+		#login ul li {
+			padding-left: 0;
+		}

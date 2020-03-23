@@ -27,7 +27,6 @@
 
 
         <script src="view/js/translate.js"></script>
-        <script src="view/js/current.js"></script>
 
 
 
@@ -38,7 +37,7 @@
 		<script src="module/song/model/validate_song_delete.js"></script>
 		<script src="module/song/model/validate_song_list.js"></script>
 		<script src="view/js/translate.js"></script>
-		<script src="view/js/current.js"></script>
+		<!-- <script src="view/js/current.js"></script> -->
         <script src="module/search/view/search.js"></script>
 		<script type="text/javascript" src="view/js/jqwidgets/jqwidgets/jqxcore.js"></script>
 		<script type="text/javascript" src="view/js/jqwidgets/jqwidgets/jqxbuttons.js"></script>
@@ -48,7 +47,8 @@
 		<script type="text/javascript" src="view/js/jqwidgets/jqwidgets/jqxcheckbox.js"></script>
 		<script type="text/javascript" src="view/js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
 		<script type="text/javascript" src="view/js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
-		<script type="text/javascript" src="view/js/jqwidgets/scripts/demos.js"></script>
+		<!-- <script type="text/javascript" src="view/js/jqwidgets/scripts/demos.js"></script> -->
+		<script src="view/js/menu.js"></script>
 
     	<script type="text/javascript">
         	$(function() {
