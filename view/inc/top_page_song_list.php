@@ -9,7 +9,6 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
 		<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 		
-
     	<script type="text/javascript">
         	$(function() {
         		$('#relase_date').datepicker({
@@ -22,7 +21,7 @@
         		});
 			});	
 	    </script>
-		<!-- <link href="view/css/style.css" rel="stylesheet" type="text/css" /> -->
+
 		<link rel="stylesheet" href="view/assets/css/main.css" />
 		<script src="module/song_list/model/validate_song_list.js"></script>
 		<script src="view/js/translate.js"></script>
@@ -37,9 +36,7 @@
 		<script type="text/javascript" src="view/js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
 		<script type="text/javascript" src="view/js/jqwidgets/scripts/demos.js"></script>
         <script src="view/js/menu.js"></script>
-
-
-
+		<script src="view/js/activity.js"></script>
 
 		<link rel="stylesheet" href="view/assets/css/main.css" />
 		<script src="module/song_list/model/validate_song_list.js"></script>

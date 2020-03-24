@@ -3,7 +3,7 @@ function account(id){
     window.location.href = 'index.php?page=controller_login&op=list';
 }
 
-function print_menu(){
+function print_menu(){ //millorar
     console.log("print_menu");
     $.ajax({
         type: "GET",

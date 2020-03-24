@@ -49,6 +49,7 @@
 		<script type="text/javascript" src="view/js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
 		<!-- <script type="text/javascript" src="view/js/jqwidgets/scripts/demos.js"></script> -->
 		<script src="view/js/menu.js"></script>
+		<script src="view/js/activity.js"></script>
 
     	<script type="text/javascript">
         	$(function() {

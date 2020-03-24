@@ -62,6 +62,22 @@ switch($_GET['op']){
             exit;
         }
     break;
+    case 'reset_time':
+        unset($_SESSION['time']);
+    ;
+    case 'activity_time':
+        if(isset($_SESSION['type'])){
+            if (!$_SESSION['time']){
+                $_SESSION['time']=time();
+                echo json_encode("enter");
+            }else{
+                if(time()-$_SESSION['time']>=900){
+                    session_destroy();
+                    echo json_encode("logout");
+                }
+            }
+        }
+    break;
     case 'log_out':
         session_destroy();
         include("module/home/view/home.html");

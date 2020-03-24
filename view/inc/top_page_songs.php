@@ -21,4 +21,5 @@
         <link rel="stylesheet" href="view/assets/css/main.css" />
         <script src="view/js/menu.js"></script>
         <script src="module/GMaps/gmapsapi.js"></script>
+        <script src="view/js/activity.js"></script>
     </head>

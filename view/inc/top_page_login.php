@@ -23,5 +23,6 @@
         <script src="module/GMaps/gmapsapi.js"></script>
         <script src="module/login/model/validate_login.js"></script>
         <script src="view/js/menu.js"></script>
+        <script src="view/js/activity.js"></script>
     </head>
     <body class="is-preload homepage">
