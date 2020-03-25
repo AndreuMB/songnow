@@ -12,7 +12,15 @@ if (isset($_GET['page'])){
 			include("module/songs/controller/".$_GET['page'].".php");
 		break;
 		case "controller_song":
-			include("module/song/controller/".$_GET['page'].".php");
+			if(isset($_SESSION['type'])){
+				if(($_SESSION['type'])=="admin"){
+					include("module/song/controller/".$_GET['page'].".php");
+				}else{
+					include("view/inc/error404.php");
+				}
+			}else{
+				include("view/inc/error404.php");
+			}
 		break;
 		case "controller_song_list":
 			include("module/song_list/controller/".$_GET['page'].".php");

@@ -1,4 +1,5 @@
 <?php
+session_start();
     if (isset($_GET['page'])){
 		if ($_GET['page']==="controller_song"){
 			include("view/inc/top_page_song.php");
@@ -18,7 +19,6 @@
 	}else{
 		include("view/inc/top_page.php");
 	}
-	// session_start();
 ?>
 <div id="wrapper">		
     <div id="header">    	

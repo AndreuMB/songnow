@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(!isset($_SESSION)){ 
+    session_start(); 
+}
 $path = $_SERVER['DOCUMENT_ROOT'] . '/SONGNOWv2/';
 include_once($path . "module/login/model/DAOlogin.php");
 
@@ -78,6 +80,13 @@ switch($_GET['op']){
             }
         }
     break;
+    case 'control_user':
+        if (!isset ($_SESSION['type'])||($_SESSION['type'])!='admin'){
+            echo json_encode("login");
+        }else{
+            echo json_encode("ok");
+        }
+        break;  
     case 'log_out':
         session_destroy();
         include("module/home/view/home.html");

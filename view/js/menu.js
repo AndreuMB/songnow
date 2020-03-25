@@ -53,7 +53,6 @@ function print_menu(){ //millorar
                     '<ul>'+
                     '<li><a class="menu" id="controller_home" href="index.php?page=controller_home&op=list" data-tr="Home">Home</a></li>'+
                     '<li><a class="menu" id="controller_songs" href="index.php?page=controller_songs&op=list" data-tr="Songs">Songs</a></li>'+
-                    '<li><a class="menu" id="controller_song" href="index.php?page=controller_song&op=list" data-tr="Song admin">Song admin</a></li>'+
                     '<li><a class="menu" id="controller_song_list" href="index.php?page=controller_song_list&op=list" data-tr="Song list">Song list</a></li>'+
                     '<li><a class="menu" id="controller_shop" href="index.php?page=controller_shop&op=list" data-tr="Shop">Shop</a></li>'+
                     '<li><a class="menu" id="aboutus" href="index.php?page=aboutus" data-tr="About us">About us</a></li>'+
