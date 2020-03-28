@@ -14,6 +14,6 @@
         function login($username){
 			$sentence = connect::sentence("SELECT * FROM users WHERE username='$username'")->fetch_object();
             return $sentence;
-		}			
+        }
     }
 ?>

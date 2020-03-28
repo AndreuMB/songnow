@@ -30,7 +30,7 @@
 		<script type="text/javascript" src="view/js/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
 		<script type="text/javascript" src="view/js/jqwidgets/jqwidgets/jqxdata.js"></script> 
 		<script type="text/javascript" src="view/js/jqwidgets/jqwidgets/jqxdatatable.js"></script> 
-		<!-- <script type="text/javascript" src="view/js/jqwidgets/jqwidgets/jqxcheckbox.js"></script> -->
+		<script type="text/javascript" src="view/js/jqwidgets/jqwidgets/jqxcheckbox.js"></script>
 		<script type="text/javascript" src="view/js/jqwidgets/jqwidgets/jqxlistbox.js"></script>
 		<script type="text/javascript" src="view/js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
 		<script type="text/javascript" src="view/js/jqwidgets/scripts/demos.js"></script>

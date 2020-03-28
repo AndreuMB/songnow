@@ -330,53 +330,129 @@ function pages(page_now, show_songs, sql){
     console.log("show_songs= " + show_songs);
     console.log("sql= " + sql);
 
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: "module/songs/controller/controller_songs.php?op=pages&num_page=" + page_now + "&show_songs=" + show_songs + "&sql=" + sql,  
-    })
-     .done(function(data) {
+    // $.ajax({
+    //     type: "GET",
+    //     dataType: "json",
+    //     url: "module/songs/controller/controller_songs.php?op=pages&num_page=" + page_now + "&show_songs=" + show_songs + "&sql=" + sql,  
+    // })
+    //  .done(function(data) {
+
+    g_promise("module/songs/controller/controller_songs.php?op=pages&num_page=" + page_now + "&show_songs=" + show_songs + "&sql=" + sql)
+    .then(function(data){
         console.log("songs in this page= ");
         console.log(data);
 
         $('#songs').empty();
- 
-        var img_categ=""
- 
-        
+    
+        var img_categ="";
+        var favorite="";
+
         for(var i=0;i<data.length;i++){
-             img_categ=img_categ+
+            img_categ=img_categ+
             '<tr class="song" id=' + data[i].id_song + '>'+
                 '<td>' + data[i].song_name + '</td>'+
                 '<td>' + data[i].singer + '</td>'+
                 '<td>' + data[i].album + '</td>'+
                 '<td>' + data[i].duration + '</td>'+
             '</tr>'
-         }
-
-         $("#songs").html(
+        }
+        $("#songs").html(
             '<div class="map">'+
             '<img src="view/img/map.png" alt="map" id=map_img style="width:100%;">'+
             '<div class="centered" data-tr="See map"></div>'+
             '</div>'+
-             '<table>'+
-             '<tr>'+
+                '<table>'+
+                '<tr>'+
                 '<th>TITLE</th>'+
                 '<th>ARTIST</th>'+
                 '<th>ALBUM</th>'+
                 '<th>DURATION</th>'+
-             '</tr>'+
-             img_categ+
-             '</table>'
-             )                  
+                '</tr>'+
+                img_categ+
+                '</table>'
+            )
+            g_promise("module/login/controller/controller_login.php?&op=info_user")
+            .then(function(data_user){
+                console.log("data user")
+                console.log(data_user);
+                console.log("data song id")
+                console.log(data);
+                var id_like=[];
+                for(var i = 0;i<data.length;i++){
+                    id_like.push(data[i].id);
+                }
+                console.log(id_like);
+            
+ 
+                g_promise("module/songs/controller/controller_songs.php?op=check_likes&id_like="+ id_like +"&id_user=" + data_user.id)
+                .then(function(data2){
+                    for(var i=0;i<data2.length;i++){
+                        console.log(data2[i]);
+                        if (data2[i]=="exist"){
+                            console.log("enter in exist");
+                            favorite='<td><i id="'+ data[i].id +'" class="far fa-heart favorite like"></i></td>'
+                        }else{
+                            favorite='<td><i id="'+ data[i].id +'" class="far fa-heart favorite"></i></td>'
+                        }
+                        $("#"+ data[i].id_song).append(
+                            favorite
+                        );
+                    }
+                })
+            }).catch(function(){
+                console.log("error_catch not loged");
+                favorite='<td><i id="'+ data[1].id +'" class="far fa-heart favorite"></i></td>'
+                // img_categ=img_categ+
+                // '<tr class="song" id=' + data[y].id_song + '>'+
+                // '<td>' + data[y].song_name + '</td>'+
+                // '<td>' + data[y].singer + '</td>'+
+                // '<td>' + data[y].album + '</td>'+
+                // '<td>' + data[y].duration + '</td>'+
+                //     favorite+
+                // '</tr>'
+            
+                // $("#songs").html(
+                //     '<div class="map">'+
+                //     '<img src="view/img/map.png" alt="map" id=map_img style="width:100%;">'+
+                //     '<div class="centered" data-tr="See map"></div>'+
+                //     '</div>'+
+                //         '<table>'+
+                //         '<tr>'+
+                //         '<th>TITLE</th>'+
+                //         '<th>ARTIST</th>'+
+                //         '<th>ALBUM</th>'+
+                //         '<th>DURATION</th>'+
+                //         '</tr>'+
+                //         img_categ+
+                //         '</table>'
+                //     )
+            })
 
-         localStorage.removeItem('filter');
-         localStorage.removeItem('genre');
-         localStorage.removeItem('singer');
-         
+        localStorage.removeItem('filter');
+        localStorage.removeItem('genre');
+        localStorage.removeItem('singer');
+})
 
-     })
 }
+
+//      })
+// }
+
+// function favorites(){
+//     g_promise("module/login/controller/controller_login.php?&op=info_user")
+//     .then(function(data_user){
+//         console.log("data_user")
+//         console.log(data_user);
+//         var array=["113", "112", "127"];
+//             g_promise("module/songs/controller/controller_songs.php?op=check_likes&id_like=113&id_user=20")
+//             .then(function(data){
+//                 console.log("enter here");
+//                 console.log(data);
+//             });
+//     }).catch(function(){
+//         console.log("error_catch not loged");
+//     })
+// }
 
 function api_details(data){
     console.log("api");
@@ -428,23 +504,47 @@ function api(){
             '</section>'+
 
         '</div>'
-
         }
         $("#api").html(
             img_categ
         )
     });
 }
-
+function likes(id){
+    g_promise("module/login/controller/controller_login.php?&op=info_user")
+    .then(function(data){
+        console.log(data);
+        g_promise("module/songs/controller/controller_songs.php?op=check_like&id_like="+ id +"&id_user=" + data.id)
+        .then(function(data2){
+            console.log(data2);
+            if (data2=="exist"){
+                console.log("enter in exist");
+                g_promise("module/songs/controller/controller_songs.php?op=delete_like&id_like="+ id +"&id_user=" + data.id)
+                $('#'+id).removeClass('like');
+            }else{
+                g_promise("module/songs/controller/controller_songs.php?op=add_like&id_like="+ id +"&id_user=" + data.id)
+                $('#'+id).addClass('like');
+            }
+        })
+    }).catch(function(){
+        console.log("error_catch");
+        window.alert("First log in");
+        window.location.href = 'index.php?page=controller_login&op=list';
+    })
+    }
 
 $(document).ready(function () {
     load();
     filters();
     api();
+    // favorites();
 
-    $(document).on('click','.song',function () {
-        var id = this.getAttribute('id');
-        product_read(id);
+    $('.songs_page').on('click','.song',function (e) {
+        console.log(e.target);
+        if (!$(e.target).is('.favorite')){
+            var id = this.getAttribute('id');
+            product_read(id);
+        }
     });
     $(document).on('click','.related',function () {
         var id = this.getAttribute('id');
@@ -459,6 +559,11 @@ $(document).ready(function () {
         script.async;
         script.defer;
         document.getElementsByTagName('script')[0].parentNode.appendChild(script);
+    });
+    $('.songs_page').on('click','.favorite',function () {
+        var id = this.getAttribute('id');
+        console.log(id);
+        likes(id);
     });
 
 })

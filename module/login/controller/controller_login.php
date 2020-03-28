@@ -66,12 +66,12 @@ switch($_GET['op']){
     break;
     case 'reset_time':
         unset($_SESSION['time']);
-    ;
+    break;
     case 'activity_time':
         if(isset($_SESSION['type'])){
+            session_regenerate_id();
             if (!$_SESSION['time']){
                 $_SESSION['time']=time();
-                echo json_encode("enter");
             }else{
                 if(time()-$_SESSION['time']>=900){
                     session_destroy();
@@ -90,6 +90,20 @@ switch($_GET['op']){
     case 'log_out':
         session_destroy();
         include("module/home/view/home.html");
+    break;
+    case 'info_user':
+        try{
+            $daouser = new DAOlogin();
+            $rdo = $daouser->login($_SESSION['username']);
+        }catch (Exception $e){
+           echo ("error");
+           exit;
+        }
+        if(!$rdo){
+           echo ("error2");
+        }else{
+        echo json_encode($rdo);
+        }
     break;
     default:
         include("view/inc/error404.php");

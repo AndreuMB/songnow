@@ -177,6 +177,71 @@
 		   }
 		break;
 
+		case 'check_like':
+			try{
+				$daouser = new DAOsongs();
+				$rdo = $daouser->check_like($_GET['id_like'],$_GET['id_user']);
+			}catch (Exception $e){
+			   echo json_encode("error");
+			   exit;
+			}
+			if(!$rdo){
+				echo json_encode("not_exist");
+			}else{
+				echo json_encode("exist");
+			}
+		break;
+		case 'check_likes':
+			$id_like1=str_replace("[", "", $_GET['id_like']);
+			$id_like2=str_replace("]", "", $id_like1);
+			$id_like3=str_replace("\"", "", $id_like2);
+			$id_likes = explode(",", $id_like3);
+			// print_r ($id_likes);
+			$result=array();
+			for($i=0;$i<count($id_likes);$i++){
+				try{
+					$daouser = new DAOsongs();
+					$rdo = $daouser->check_like($id_likes[$i],$_GET['id_user']);
+				}catch (Exception $e){
+					echo json_encode("error");
+				exit;
+				}
+				if(!$rdo){
+					array_push($result, "not_exist");
+				}else{
+					array_push($result, "exist");
+				}
+			}
+			echo json_encode($result);
+		break;
+		case 'add_like':
+			try{
+				$daouser = new DAOsongs();
+				$rdo = $daouser->add_like($_GET['id_like'],$_GET['id_user']);
+			}catch (Exception $e){
+			   echo json_encode("error");
+			   exit;
+			}
+			if(!$rdo){
+				echo json_encode("error2");
+			}else{
+				echo json_encode("done");
+			}
+		break;
+		case 'delete_like':
+			try{
+				$daouser = new DAOsongs();
+				$rdo = $daouser->delete_like($_GET['id_like'],$_GET['id_user']);
+			}catch (Exception $e){
+			   echo json_encode("error");
+			   exit;
+			}
+			if(!$rdo){
+				echo json_encode("error2");
+			}else{
+				echo json_encode("done");
+			}
+		break;
 		default:
 			include("view/inc/error404.php");
 			break;

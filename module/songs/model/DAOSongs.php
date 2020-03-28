@@ -40,4 +40,16 @@
 			$sentence = connect::sentence("$sql ORDER BY views DESC LIMIT $records_per_page OFFSET $start");
 			return $sentence;
 		}
+		function check_like($like, $user){
+			$sentence = connect::sentence("SELECT * FROM favorites WHERE likes='$like' AND users='$user'")->fetch_object();
+			return $sentence;
+		}
+		function add_like($like, $user){
+			$sentence = connect::sentence("INSERT INTO favorites (likes, users) VALUES ('$like', '$user')");
+			return $sentence;
+		}
+		function delete_like($like, $user){
+			$sentence = connect::sentence("DELETE FROM favorites WHERE likes='$like' AND users='$user'");
+			return $sentence;
+		}
 	}

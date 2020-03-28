@@ -1,13 +1,18 @@
-function g_promise(urlg, datag=undefined){
-    return new Promise(function (resolve){
+function g_promise(urlg){
+    return new Promise(function (resolve, reject){
         $.ajax({
-            type:'POST',
+            type:'GET',
             dataType: "json",
-            url:urlg,
-            data:datag,
+            url: urlg,
         })
         .done(function(data){
+            console.log("resolve");
             resolve(data);
+        })
+        .fail(function(data){
+            console.log(data);
+            console.log("reject");
+            reject();
         })
     })
 }
@@ -20,6 +25,7 @@ function reset_time(){
 }
 function activity_time(){
     console.log("time reset");
+    console.log("renew session");
     setInterval(function(){
         console.log("check time");
         $.ajax({

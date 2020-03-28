@@ -3001,39 +3001,48 @@ table {
 	color: yellow;
 }
 
-	#login h2 {
-		font-size: 3.5em;
-		margin: 0.1em 0 0.35em 0;
-	}
+#login h2 {
+	font-size: 3.5em;
+	margin: 0.1em 0 0.35em 0;
+}
 
-	#login p {
-		margin: 1em;
-	}
+#login p {
+	margin: 1em;
+}
 
-	#login .button {
-		width: 100%;
-		margin-bottom: 0.5em;
-	}
+#login .button {
+	width: 100%;
+	margin-bottom: 0.5em;
+}
 
-		#login .button.icon:before {
-			position: absolute;
-			right: 0.15em;
-			top: 50%;
-			margin-top: -0.5em;
-		}
+#login .button.icon:before {
+	position: absolute;
+	right: 0.15em;
+	top: 50%;
+	margin-top: -0.5em;
+}
 
-		#login .button.alt {
-			margin-bottom: 0;
-			background: yellow;
-			color: black;
-		}
+#login .button.alt {
+	margin-bottom: 0;
+	background: yellow;
+	color: black;
+}
 
-	#login ul {
-		list-style: none;
-		padding-left: 0;
-		margin: 0 0 0 2em;
-	}
+#login ul {
+list-style: none;
+padding-left: 0;
+margin: 0 0 0 2em;
+}
 
-		#login ul li {
-			padding-left: 0;
-		}
+#login ul li {
+	padding-left: 0;
+}
+
+.favorite:hover {
+	color :red;
+	font-weight: 600;
+}
+.like{
+	color :yellow;
+	font-weight: 600;
+}
