@@ -3,7 +3,7 @@ function account(id){
     window.location.href = 'index.php?page=controller_login&op=list';
 }
 
-function print_menu(){ //millorar
+function print_menu(){
     console.log("print_menu");
     $.ajax({
         type: "GET",
@@ -13,51 +13,60 @@ function print_menu(){ //millorar
      .done(function(data) {
         console.log("data menu");
         console.log(data)
+        var menu_basic= ['<li><a class="menu" id="controller_home" href="index.php?page=controller_home&op=list" data-tr="Home">Home</a></li>',
+        '<li><a class="menu" id="controller_songs" href="index.php?page=controller_songs&op=list" data-tr="Songs">Songs</a></li>',
+        '<li><a class="menu" id="controller_song_list" href="index.php?page=controller_song_list&op=list" data-tr="Song list">Song list</a></li>',
+        '<li><a class="menu" id="controller_shop" href="index.php?page=controller_shop&op=list" data-tr="Shop">Shop</a></li>',
+        '<li><a class="menu" id="aboutus" href="index.php?page=aboutus" data-tr="About us">About us</a></li>',
+        '<li><a class="menu" id="controller_contact" href="index.php?page=controller_contact" data-tr="Contact us">Contact us</a></li>',
+        '<li><a class="menu" id="controller_cart" href="index.php?page=controller_cart&op=list"</a><i class="fas fa-shopping-cart"></i></li>'];
+
+        var menu_client="";
+        var menu_admin="";
+        var menu_guest="";
+
         if (data != null){
             if (data.type=="client"){
+                menu_basic.push('<li><img src="'+data.avatar+'" alt="avatar" height="42" width="42"><a class="menu" id="user" href="#">'+data.username+'</a></li>',
+                '<li><a class="menu" id="controller_login" href="index.php?page=controller_login&op=log_out" data-tr="Log out">Log out</a></li>');
+                for (var i=0;i<menu_basic.length;i++){
+                    menu_client=menu_client+menu_basic[i];
+                }                
+                console.log(menu_client);
                 $("#menu").html(
                     '<nav id="nav">'+
                         '<ul>'+
-                            '<li><a class="menu" id="controller_home" href="index.php?page=controller_home&op=list" data-tr="Home">Home</a></li>'+
-                            '<li><a class="menu" id="controller_songs" href="index.php?page=controller_songs&op=list" data-tr="Songs">Songs</a></li>'+
-                            '<li><a class="menu" id="controller_song_list" href="index.php?page=controller_song_list&op=list" data-tr="Song list">Song list</a></li>'+
-                            '<li><a class="menu" id="controller_shop" href="index.php?page=controller_shop&op=list" data-tr="Shop">Shop</a></li>'+
-                            '<li><a class="menu" id="aboutus" href="index.php?page=aboutus" data-tr="About us">About us</a></li>'+
-                            '<li><a class="menu" id="controller_contact" href="index.php?page=controller_contact" data-tr="Contact us">Contact us</a></li>'+
-                            '<li><img src="'+data.avatar+'" alt="avatar" height="42" width="42"><a class="menu" id="user" href="#">'+data.username+'</a></li>'+
-                            '<li><a class="menu" id="controller_login" href="index.php?page=controller_login&op=log_out" data-tr="Log out">Log out</a></li>'+
+                        menu_client+
                         '</ul>'+
                     '</nav>'
                 )
             }else{
+                menu_basic.splice(2, 0, '<li><a class="menu" id="controller_song" href="index.php?page=controller_song&op=list" data-tr="Song admin">Song admin</a></li>');
+                menu_basic.push('<li><img src="'+data.avatar+'" alt="avatar" height="42" width="42"><a class="menu" id="user" href="#">'+data.username+'</a></li>',
+                '<li><a class="menu" id="controller_login" href="index.php?page=controller_login&op=log_out" data-tr="Log out">Log out</a></li>');
+                for (var i=0;i<menu_basic.length;i++){
+                    menu_admin=menu_admin+menu_basic[i];
+                }                
+                console.log(menu_admin);
                 $("#menu").html(
                     '<nav id="nav">'+
                         '<ul>'+
-                            '<li><a class="menu" id="controller_home" href="index.php?page=controller_home&op=list" data-tr="Home">Home</a></li>'+
-                            '<li><a class="menu" id="controller_songs" href="index.php?page=controller_songs&op=list" data-tr="Songs">Songs</a></li>'+
-                            '<li><a class="menu" id="controller_song" href="index.php?page=controller_song&op=list" data-tr="Song admin">Song admin</a></li>'+
-                            '<li><a class="menu" id="controller_song_list" href="index.php?page=controller_song_list&op=list" data-tr="Song list">Song list</a></li>'+
-                            '<li><a class="menu" id="controller_shop" href="index.php?page=controller_shop&op=list" data-tr="Shop">Shop</a></li>'+
-                            '<li><a class="menu" id="aboutus" href="index.php?page=aboutus" data-tr="About us">About us</a></li>'+
-                            '<li><a class="menu" id="controller_contact" href="index.php?page=controller_contact" data-tr="Contact us">Contact us</a></li>'+
-                            '<li><img src="'+data.avatar+'" alt="avatar" height="30" width="30"><a class="menu" id="controller_contact" href="#">'+data.username+'</a></li>'+
-                            '<li><a class="menu" id="controller_login" href="index.php?page=controller_login&op=log_out" data-tr="Log out">Log out</a></li>'+    
+                        menu_admin+ 
                         '</ul>'+
                     '</nav>'
                 )
             }
 
         }else{
+            menu_basic.push('<li><a class="menu" id="login_button" href="index.php?page=controller_login&op=list" data-tr="Login">Login</a></li>');
+            for (var i=0;i<menu_basic.length;i++){
+                menu_guest=menu_guest+menu_basic[i];
+            }
+            console.log(menu_guest);
             $("#menu").html(
                 '<nav id="nav">'+
                     '<ul>'+
-                    '<li><a class="menu" id="controller_home" href="index.php?page=controller_home&op=list" data-tr="Home">Home</a></li>'+
-                    '<li><a class="menu" id="controller_songs" href="index.php?page=controller_songs&op=list" data-tr="Songs">Songs</a></li>'+
-                    '<li><a class="menu" id="controller_song_list" href="index.php?page=controller_song_list&op=list" data-tr="Song list">Song list</a></li>'+
-                    '<li><a class="menu" id="controller_shop" href="index.php?page=controller_shop&op=list" data-tr="Shop">Shop</a></li>'+
-                    '<li><a class="menu" id="aboutus" href="index.php?page=aboutus" data-tr="About us">About us</a></li>'+
-                    '<li><a class="menu" id="controller_contact" href="index.php?page=controller_contact" data-tr="Contact us">Contact us</a></li>'+
-                    '<li><a class="menu" id="login_button" href="index.php?page=controller_login&op=list" data-tr="Login">Login</a></li>'+
+                    menu_guest+
                     '</ul>'+
                 '</nav>'
             )

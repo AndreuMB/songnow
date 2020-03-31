@@ -13,6 +13,8 @@ session_start();
 			include("view/inc/top_page_songs.php");
 		}elseif($_GET['page']==="controller_login"){
 			include("view/inc/top_page_login.php");
+		}elseif($_GET['page']==="controller_cart"){
+			include("view/inc/top_page_cart.php");
 		}else{
 			include("view/inc/top_page.php");
 		}
