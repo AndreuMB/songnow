@@ -32,7 +32,7 @@ function print_menu(){
                 for (var i=0;i<menu_basic.length;i++){
                     menu_client=menu_client+menu_basic[i];
                 }                
-                console.log(menu_client);
+                // console.log(menu_client);
                 $("#menu").html(
                     '<nav id="nav">'+
                         '<ul>'+
@@ -47,7 +47,7 @@ function print_menu(){
                 for (var i=0;i<menu_basic.length;i++){
                     menu_admin=menu_admin+menu_basic[i];
                 }                
-                console.log(menu_admin);
+                // console.log(menu_admin);
                 $("#menu").html(
                     '<nav id="nav">'+
                         '<ul>'+
@@ -62,7 +62,7 @@ function print_menu(){
             for (var i=0;i<menu_basic.length;i++){
                 menu_guest=menu_guest+menu_basic[i];
             }
-            console.log(menu_guest);
+            // console.log(menu_guest);
             $("#menu").html(
                 '<nav id="nav">'+
                     '<ul>'+

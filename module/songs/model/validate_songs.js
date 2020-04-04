@@ -361,15 +361,15 @@ function pages(page_now, show_songs, sql){
             '<img src="view/img/map.png" alt="map" id=map_img style="width:100%;">'+
             '<div class="centered" data-tr="See map"></div>'+
             '</div>'+
-                '<table>'+
-                '<tr>'+
-                '<th>TITLE</th>'+
-                '<th>ARTIST</th>'+
-                '<th>ALBUM</th>'+
-                '<th>DURATION</th>'+
-                '</tr>'+
-                img_categ+
-                '</table>'
+            '<table>'+
+            '<tr>'+
+            '<th>TITLE</th>'+
+            '<th>ARTIST</th>'+
+            '<th>ALBUM</th>'+
+            '<th>DURATION</th>'+
+            '</tr>'+
+            img_categ+
+            '</table>'
             )
             g_promise("module/login/controller/controller_login.php?&op=info_user")
             .then(function(data_user){
