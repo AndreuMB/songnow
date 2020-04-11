@@ -1,9 +1,10 @@
-function g_promise(urlg){
+function g_promise(urlg, data_a=undefined){
     return new Promise(function (resolve, reject){
         $.ajax({
-            type:'GET',
+            type:'POST',
             dataType: "json",
             url: urlg,
+            data: {data_a}
         })
         .done(function(data){
             console.log("resolve");

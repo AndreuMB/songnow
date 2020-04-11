@@ -100,7 +100,7 @@ switch($_GET['op']){
            exit;
         }
         if(!$rdo){
-           echo ("error2");
+           echo ("error");
         }else{
         echo json_encode($rdo);
         }

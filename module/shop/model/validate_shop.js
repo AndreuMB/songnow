@@ -21,7 +21,7 @@ function products(){
                 '<a href="#" class="image featured prod_img" id="' + data[i].id + '"><img src="' + data[i].rute + '" alt="" /></a>'+
                 '<div class="inner prod_title">'+
                     '<header>'+
-                        '<h2>' + title_categ[i] + '</h2>'+
+                        '<h2>' + data[i].name + '</h2>'+
                     '</header>'+
                     '<h2 class="buy_b buy" id="' + data[i].id + '">BUY</h2>'+
                 '</div>'+
