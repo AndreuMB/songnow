@@ -171,7 +171,14 @@ $(document).ready(function () {
                     window.alert(data);
                 }else{
                     window.alert("Log in successfully");
-                    window.location.href = 'index.php?page=controller_home&op=list';
+                    if(localStorage.getItem("buy") === null){
+                        console.log("CART NOT EXIST");
+                        window.location.href = 'index.php?page=controller_home&op=list';
+                    }else{
+                        console.log("CART EXIST");
+                        localStorage.removeItem("buy");
+                        window.location.href = 'index.php?page=controller_cart&op=list';
+                    }
                 }
 
             })

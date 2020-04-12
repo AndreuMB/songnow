@@ -13,7 +13,7 @@ switch($_GET['op']){
     case 'register':
         try{
             $daouser = new DAOlogin();
-            $rdo = $daouser->register($_GET['username'], $_GET['email'], $_GET['psswd']);
+            $rdo = $daouser->register($_POST['username'], $_POST['email'], $_POST['psswd']);
        }catch (Exception $e){
            echo json_encode("error");
            exit;

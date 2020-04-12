@@ -148,6 +148,8 @@ function buy(){
         })
     }).catch(function(){
         console.log("ENTER_CATCH NEED LOGIN");
+        localStorage.setItem('buy','buy');
+        window.location.href = 'index.php?page=controller_login&op=list';
     })
 }
 
